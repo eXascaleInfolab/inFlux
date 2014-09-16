@@ -129,9 +129,11 @@
       if (gup('assignmentId') == "ASSIGNMENT_ID_NOT_AVAILABLE" || gup('assignmentId')=="")
       {
         // If we're previewing, disable the button and give it a helpful message
-        //document.getElementById('submitButton').className += " disabled";
+        document.getElementById('submitButton').className += " disabled";
         document.getElementById('submitButton').innerHTML = "You must ACCEPT the HIT before you can submit the results.";
       } else {
+        // If the user accepted, then show the task.
+        // fetch assignementId and workerId e.g.: ?assignmentId=1234&workerId=Dj
           var form = document.getElementById('mturk_form');
           if (document.referrer && ( document.referrer.indexOf('workersandbox') != -1) ) {
               form.action = "https://www.mturk.com/mturk/externalSubmit";
@@ -141,31 +143,184 @@
   </script>
 
   <!-- Modal -->
-<div id="submitModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<div id="submitModal" class="modal hide fade modal-admin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
               <h3 id="myModalLabel">Quick Feedback Form</h3>
             </div>
             <div class="modal-body">
               <h4>Summary</h4>
-              <p>You did correct 14 correct tasks. Upon verification you'll receive $2.0 in bonus</p>
+              <p>You answered <a class="btn btn-info disabled">14</a> correct tasks. Upon verification you'll receive <a class="btn btn-success disabled">$2.01</a> in bonus</p>
+              <p>But first you need to answer the following questionaire.</p>
 
-              <h4>Form</h4>
-              <p>This <a href="#" role="button" class="btn popover-test" title="" data-content="And here's some amazing content. It's very engaging. right?" data-original-title="A Title">button</a> should trigger a popover on click.</p>
-
-              <h4>Tooltips in a modal</h4>
-              <p><a href="#" class="tooltip-test" title="" data-original-title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="" data-original-title="Tooltip">that link</a> should have tooltips on hover.</p>
-
-              <hr>
-
-              <h4>Overflowing text to show optional scrollbar</h4>
-              <p>We set a fixed <code>max-height</code> on the <code>.modal-body</code>. Watch it overflow with all this extra lorem ipsum text we've included.</p>
-              <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-              <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-              <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-              <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Not at all</th>
+      <th>Partly</th>
+      <th>Very much</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>I feel just the right amount of challenge </td>
+        <td colspan="3">
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+        </td>
+      </tr>
+      <tr>
+        <td>My thoughts/activities run fluidly and smoothly </td>
+          <td colspan="3">
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+        </td>
+      </tr>
+      <tr>
+        <td>I do not notice time passing</td>
+          <td colspan="3">
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+        </td>
+      </tr>
+      <tr>
+        <td>I have no diffi culty concentrating</td>
+          <td colspan="3">
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+        </td>
+      </tr>
+      <tr>
+        <td>My mind is completely clear</td>
+        <td colspan="3">
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+        </td>
+      </tr>
+      <tr>
+        <td>I am totally absorbed in what I am doing</td>
+        <td colspan="3">
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+        </td>
+      </tr>
+      <tr>
+        <td>The right thoughts/movements occur of their own accord</td>
+        <td colspan="3">
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+        </td>
+      </tr>
+      <tr>
+        <td>I know what I have to do each step of the way </td>
+        <td colspan="3">
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+        </td>
+      </tr>
+      <tr>
+        <td>I feel that I have everything under control </td>
+        <td colspan="3">
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+        </td>
+      </tr>
+      <tr>
+        <td>I am completely lost in thought </td>
+        <td colspan="3">
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+        </td>
+      </tr>
+      <tr>
+        <td>Something important to me is at stake here </td>
+        <td colspan="3">
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+        </td>
+      </tr>
+      <tr>
+        <td>I must not make any mistakes here </td>
+        <td colspan="3">
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+        </td>
+      </tr>
+      <tr>
+        <td>I am worried about failing</td>  
+        <td colspan="3">
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+          <label class="radio inline"><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"></label>
+        </td>
+      </tr>
+  </tbody>
+</table>
             </div>
             <div class="modal-footer">
               <button class="btn" data-dismiss="modal">Close</button>

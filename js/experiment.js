@@ -29,17 +29,14 @@ Application = StateMachine.create({
     onwelcome: function() { $('#container-main').html(Template.message(
           { title: "", 
             paragraphs: [
-                "<h2>Instructions</h2>",
+                "<h3>Instructions</h3>",
                 "We will show you a set of icons, and your task is to detect if there are duplicates.",
                 "Click or Press <a class=\"btn btn-inverse disabled\">J</a> if there is a duplicate.",
                 "Click or Press <a class=\"btn btn-inverse disabled\">space</a> if no duplicates are present.",
                 "For each correct question you receive <a class=\"btn btn-success disabled\">$0.01</a> bonus.",
                 "<hr>",
                 "To receive your bonus, click on the <a class=\"btn btn-danger disabled\">Submit</a> button and answer a very short questionnaire before submitting.",
-                ], 
-            buttons: [
-                { label: "Start (remove this when we go live)", onclick: "Application.giveExplanation()", class: "btn-large btn-primary" },
-            ],
+                ]
         })); },
 
 
@@ -64,6 +61,7 @@ Application = StateMachine.create({
                 class: "btn-large btn-primary"
             },],
         })); },
+
 
     onintro: function () { 
         var that = this;
