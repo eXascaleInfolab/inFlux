@@ -27,18 +27,21 @@ Application = StateMachine.create({
     }, 
 
     onwelcome: function() { $('#container-main').html(Template.message(
-          { title: "Welcome", 
+          { title: "", 
             paragraphs: [
-            "", 
-            "Hi there, you like to help me with my MSc Thesis by fooling around for maximum around 5 minutes?",
-            "That is nice, Thank You!",
-            "Find a short explanation what to do on the next site."
-            ], 
+                "<h2>Instructions</h2>",
+                "We will show you a set of icons, and your task is to detect if there are duplicates.",
+                "Click or Press <a class=\"btn btn-inverse disabled\">J</a> if there is a duplicate.",
+                "Click or Press <a class=\"btn btn-inverse disabled\">space</a> if no duplicates are present.",
+                "For each correct question you receive <a class=\"btn btn-success disabled\">$0.01</a> bonus.",
+                "<hr>",
+                "To receive your bonus, click on the <a class=\"btn btn-danger disabled\">Submit</a> button and answer a very short questionnaire before submitting.",
+                ], 
             buttons: [
-                { label: "Next", onclick: "Application.giveExplanation()", class: "btn-large btn-primary" },
-                { label: "I know already how it works, jump directly to the experiment.", onclick: "Application.prepareExperiment()", },
+                { label: "Start (remove this when we go live)", onclick: "Application.giveExplanation()", class: "btn-large btn-primary" },
             ],
         })); },
+
 
     onleavewelcome: function() {
         $('#nav-welcome').toggleClass('active');

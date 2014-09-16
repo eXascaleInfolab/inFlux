@@ -18,6 +18,32 @@
        Modernizr enables HTML5 elements & feature detects for optimal performance.
        Create your own custom Modernizr build: www.modernizr.com/download/ -->
   <script src="js/vendor/modernizr-2.5.3.min.js"></script>
+  <!-- for Mturk -->
+  <script language="Javascript">
+      //
+      // This method Gets URL Parameters (GUP)
+      //
+      function gup( name )
+      {
+        var regexS = "[\\?&]"+name+"=([^&#]*)";
+        var regex = new RegExp( regexS );
+        var tmpURL = window.location.href;
+        var results = regex.exec( tmpURL );
+        if( results == null )
+          return "";
+        else
+          return results[1];
+      }
+
+      //
+      // This method decodes the query parameters that were URL-encoded
+      //
+      function decode(strToDecode)
+      {
+        var encoded = strToDecode;
+        return unescape(encoded.replace(/\+/g,  " "));
+      }
+  </script>
 </head>
 <body style="padding-top: 10px;">
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
@@ -43,7 +69,7 @@
                     </li>
                 </ul>
                 <div class="pull-right">
-                  <a class="btn btn-danger"> Submit</a>
+                  <a href="#submitModal" class="btn btn-danger" id="submitButton" role="button" data-toggle="modal"> Submit Results</a>
                 </div>
             </div><!-- /.nav-collapse -->
         </div>
@@ -94,15 +120,50 @@
   </div>
   </script>
 
+  <!-- Mechanical Turk -->
+  <script language="Javascript">
+    if( document.getElementById('assignmentId') ){
+      document.getElementById('assignmentId').value = gup('assignmentId');
+    }
+    if (document.getElementById('submitButton')) {
+      if (gup('assignmentId') == "ASSIGNMENT_ID_NOT_AVAILABLE" || gup('assignmentId')=="")
+      {
+        // If we're previewing, disable the button and give it a helpful message
+        //document.getElementById('submitButton').className += " disabled";
+        document.getElementById('submitButton').innerHTML = "You must ACCEPT the HIT before you can submit the results.";
+      } else {
+          var form = document.getElementById('mturk_form');
+          if (document.referrer && ( document.referrer.indexOf('workersandbox') != -1) ) {
+              form.action = "https://www.mturk.com/mturk/externalSubmit";
+          }
+      }
+    }
+  </script>
+
+  <!-- Modal -->
+  <div id="submitModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Modal header</h3>
+    </div>
+    <div class="modal-body">
+      <p>One fine body…</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn btn-primary">Save changes</button>
+    </div>
+  </div>
 
   <!-- JavaScript at the bottom for fast page loading: http://developer.yahoo.com/performance/rules.html#js_bottom -->
 
   <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline
    -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.2.min.js"><\/script>')</script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 
   <!-- scripts concatenated and minified via build script -->
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js">
   <script src="js/vendor/cryptojs/rollups/sha1.js"></script>
   <script src="js/vendor/fsm/state-machine.js"></script>
   <script src="js/vendor/handlebars-1.0.0.beta.6.js"></script>
