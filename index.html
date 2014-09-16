@@ -1,0 +1,134 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>libMoji</title>
+  <meta name="description" content="">
+  <!-- Mobile viewport optimized: h5bp.com/viewport -->
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/style.css">
+  <link href='http://fonts.googleapis.com/css?family=Belgrano' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+  <!-- All JavaScript at the bottom, except this Modernizr build.
+       Modernizr enables HTML5 elements & feature detects for optimal performance.
+       Create your own custom Modernizr build: www.modernizr.com/download/ -->
+  <script src="js/vendor/modernizr-2.5.3.min.js"></script>
+</head>
+<body style="padding-top: 60px;">
+  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+  
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <div class="pull-right">
+                <a class="brand" href="#" style="font-family: Belgrano;">libMoji</a>
+            </div>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li id="nav-welcome" class="active">
+                        <a href="#">Overview</a>
+                    </li>
+                </ul>
+            </div><!-- /.nav-collapse -->
+        </div>
+    </div><!-- /navbar-inner -->
+</div><!-- /navbar -->
+
+<div id="container-main" class="container">
+    <div class="row">
+        <div class="span12"><h1>libMoji</h1></div>
+    </div>
+    <div id="explanation" class="row" style="display: inline-block;">
+	<div class="span6">
+		<p>This pages shows some different uses of the libMoji.js, please have look at the source code.
+		</p>
+        </div>
+    </div>
+    <div id="identifiers" class="row" style="display: inline-block;">
+        <div class="span4">
+            <canvas id="identicon1" class="identicon" width="290" data-content="a9a44a835d411610c91ee2c4e7eaa434c99e346a" identicon-type="Moji"></canvas> 
+        </div>
+        <div class="span1">
+            <div id="ident2"></div>
+        </div>
+        <div class="span1">
+            <canvas class="identicon" data-content="a9a44a835d411610c91ee2c4e7eaa434c99e346a" identicon-type="Moji"></canvas> 
+        </div>
+        <div class="span1">
+            <canvas class="identicon" data-content="b9a44a835d411610c91ee2c4e7eaa434c99e346a" identicon-type="Moji"></canvas>
+        </div>
+        <div class="span1">
+            <canvas class="identicon" identicon-type="Figure"></canvas>
+        </div>
+        <div class="span1">
+            <canvas class="identicon" identicon-type="FigureMoji"></canvas>
+        </div>
+        <div class="span1">
+            <canvas class="identicon" identicon-type="FigureMoji2"></canvas>
+        </div>
+        <div class="span1">
+            <canvas class="identicon" identicon-type="FigureTwoTail"></canvas>
+        </div>
+        <div class="span1">
+            <canvas class="identicon" identicon-type="Matrix"></canvas>
+        </div>
+
+    </div>
+</div>
+
+  <script id="div-block-ident" type="text/x-handlebars-template">
+    <span class="span1">
+        <canvas class="identicon" data-content="{{data}}" identicon-type="{{type}}"></canvas>
+    </span>
+  </script>
+  
+
+  <!-- JavaScript at the bottom for fast page loading: http://developer.yahoo.com/performance/rules.html#js_bottom -->
+
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline
+   -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.2.min.js"><\/script>')</script>
+
+  <!-- scripts concatenated and minified via build script -->
+  <script src="js/vendor/cryptojs/rollups/sha1.js"></script>
+  <script src="js/vendor/fsm/state-machine.js"></script>
+  <script src="js/vendor/handlebars-1.0.0.beta.6.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/geom.js"></script>
+  <script src="js/libmoji.js"></script>
+  <!-- end scripts -->
+  <script>
+
+    // create by javascript
+
+    var size = 32;
+    canvas = document.createElement('canvas');
+    canvas.setAttribute("width", size);
+    canvas.setAttribute("height", size);
+    new Identicon(canvas, 'Moji', "Moji");
+    document.getElementById('ident2').appendChild(canvas);
+
+
+    // use <canvas class="identicon" data-content="hash"></canvas>
+
+    ident = Handlebars.compile($("#div-block-ident").html());
+    for (var i = 0; i < 56 ; i++ ) {
+        $('#identifiers').append(ident({data: (i+0x10000).toString(16).substr(-4).toUpperCase()+"0a9f203b23233324123f95601890afd80709", type: 'Moji'}));
+    }
+
+    Identicon.init();
+
+    // access after creation
+    setInterval(function(){document.getElementById('identicon1').getIdenticon().update();}, 3000);
+    
+  </script>
+
+</body>
+</html>

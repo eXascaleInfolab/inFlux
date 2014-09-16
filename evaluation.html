@@ -1,0 +1,106 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>libMoji</title>
+  <meta name="description" content="">
+  <!-- Mobile viewport optimized: h5bp.com/viewport -->
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/style.css">
+  <link href='http://fonts.googleapis.com/css?family=Belgrano' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css">
+  <!-- All JavaScript at the bottom, except this Modernizr build.
+       Modernizr enables HTML5 elements & feature detects for optimal performance.
+       Create your own custom Modernizr build: www.modernizr.com/download/ -->
+  <script src="js/vendor/modernizr-2.5.3.min.js"></script>
+</head>
+<body style="padding-top: 10px;">
+  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+  
+<div class="navbar container">
+    <div class="navbar-inner">
+        <div class="container">
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li id="nav-welcome">
+                        <a href="#">Completed : 14</a>
+                    </li>
+                    <li id="nav-introduction">
+                        <a href="#">Bonus : $0.4</a>
+                    </li>
+                </ul>
+                <a class="btn btn-danger pull-right">Submit</a>
+            </div><!-- /.nav-collapse -->
+        </div>
+    </div><!-- /navbar-inner -->
+</div><!-- /navbar -->
+
+<div id="container-main" class="container">
+    <div class="row">
+        <div class="span12"><h1>JavaScript enabled?</h1></div>
+    </div>
+    <div id="identifiers" class="row" style="display: inline-block;">
+    </div>
+</div>
+
+<div id="container-preload" class="container" style="visibility: hidden;">
+</div>
+
+  <script id="div-block-ident" type="text/x-handlebars-template">
+    <span>
+        <canvas class="identicon" data-content="{{data}}" identicon-type="{{type}}"></canvas>
+    </span>
+  </script>
+  
+  <script id="container-message" type="text/x-handlebars-template">
+  <div class="hero-unit">
+    <h1>{{this.title}}}</h1>
+    {{#each paragraphs}}
+    <p>{{{this}}}</p>
+    {{/each}}
+    <br />
+    <p>
+        {{#each buttons}}
+        <a class="btn {{this.class}}" onclick="{{this.onclick}}">{{this.label}}</a><br />
+        {{/each}}
+    </p>
+  </div>  
+  </script>
+
+  <script id="trial-message" type="text/x-handlebars-template">
+  <div class="row">
+      <div class="span10 offset1 well" style="padding: 0px; height: 500px; display:table; text-align:center;">
+           <div style="display: table-cell; vertical-align: middle;">{{{this}}}</div>
+      </div>
+  </div>
+  <div class="row">
+      <div class="span10 offset1"><span><a class="btn btn-inverse disabled">J</a> found duplicate</span>
+      <span class="pull-right">all unique <a class="btn btn-inverse disabled">space</a></span></div>
+  </div>
+  </script>
+
+
+  <!-- JavaScript at the bottom for fast page loading: http://developer.yahoo.com/performance/rules.html#js_bottom -->
+
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline
+   -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.2.min.js"><\/script>')</script>
+
+  <!-- scripts concatenated and minified via build script -->
+  <script src="js/vendor/cryptojs/rollups/sha1.js"></script>
+  <script src="js/vendor/fsm/state-machine.js"></script>
+  <script src="js/vendor/handlebars-1.0.0.beta.6.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/geom.js"></script>
+  <script src="js/libmoji.js"></script>
+  <script src="js/experiment.js"></script>
+  <!-- end scripts -->
+</body>
+</html>
