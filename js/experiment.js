@@ -206,11 +206,12 @@ TaskFSM.prototype = {
 
         var n = this.time * 10;
         var tm = setInterval(countDown,100);
+        that.tm = tm;
         function countDown(){
            n--;
            if(n == 0){
               that.stop('timeout'); 
-              clearInterval(tm);
+              clearInterval(that.tm);
            }
            $("#timer").text(msToTime(n*100));
         }
@@ -276,6 +277,7 @@ TaskFSM.prototype = {
                 this.task.result.correct = false;
                 this.task.result.timeover = true;
         } else {
+            clearInterval(this.tm);
             if (this.task.similar == msg) {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkgreen;">Correct, '+this.task.result.time+' ms</p>')); 
                 this.task.result.correct = true;
