@@ -68,7 +68,7 @@ Application = StateMachine.create({
           {
             // If we're previewing, disable the button and give it a helpful message
             document.getElementById('submitButton').className += " disabled";
-            document.getElementById('submitButton').innerHTML = "You must ACCEPT the HIT before you can submit the results.";
+            document.getElementById('submitButton').innerHTML = "Submit Results";
           } else {
             // If the user accepted, then show the task.
             // fetch assignementId and workerId e.g.: ?assignmentId=1234&workerId=Dj
@@ -87,12 +87,12 @@ Application = StateMachine.create({
           { title: "", 
             paragraphs: [
                 "<h3>Instructions</h3>",
-                "We will show you a set of icons, and your task is to detect if there are duplicates.",
-                "Click or Press <a class=\"btn btn-inverse disabled\">J</a> if there is a duplicate.",
-                "Click or Press <a class=\"btn btn-inverse disabled\">space</a> if no duplicates are present.",
+                "We will show you a set of icons, and your task is to detect if there are duplicates among them.",
+                "Press <a class=\"btn btn-inverse disabled\">J</a> if there is a duplicate.",
+                "Press <a class=\"btn btn-inverse disabled\">space</a> if no duplicates are present.",
                 "For each correct question you receive <a class=\"btn btn-success disabled\">$0.01</a> bonus.",
                 "<hr>",
-                "To receive your bonus, click on the <a class=\"btn btn-danger disabled\">Submit</a> button and answer a very short questionnaire before submitting.",
+                "To receive your bonus, click on the <a class=\"btn btn-danger disabled\">Submit Results</a> button and answer a very short questionnaire before submitting.",
                 ]
         })); },
 
@@ -323,7 +323,7 @@ TaskFSM.prototype = {
         }
         // DED: push the json in the value of data
         $("#data").val(JSON.stringify( Application.experiment ));
-        setTimeout(function () {that.callBack()}, 200);
+        setTimeout(function () {that.callBack()}, 400);
         },
 }
 
@@ -354,83 +354,11 @@ Application.load({
     workerId: 0,
     assignmentId: 0,
     sets: [
-        {
-        name: "set_base",
-        tasks: [
-        {
-            type: 'Figure',
-            amount: 6,
-        },
-        {
-            type: 'Figure',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Text10',
-            amount: 6,
-        },
-        {
-            type: 'Text',
-            amount: 6,
-        },
-    ]},
-    {
-        name: "set_color",
-        tasks: [
-        {
-            type: 'FigureBW',
-            amount: 6,
-        },
-        {
-            type: 'FigureC1',
-            amount: 6,
-        },
-        {
-            type: 'FigureC2',
-            amount: 6,
-        },
-        {
-            type: 'FigureC3',
-            amount: 6,
-        },
-        {
-            type: 'FigureGrey',
-            amount: 6,
-        },
-     ]},
-     {
-        name: "set_shape",
-        tasks: [
-        {
-            type: 'FigureBlob',
-            amount: 6,
-        },
-        {
-            type: 'Moji',
-            amount: 6,
-        },
-        {
-            type: 'FigureMoji',
-            amount: 6,
-        },
-        {
-            type: 'FigureMoji2',
-            amount: 6,
-        },
-        {
-            type: 'FigureTwo',
-            amount: 6,
-        },
-      ]},
       {
         name: "set_validation",
         tasks: [
         {
-            type: 'GravIdenticon',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
@@ -445,8 +373,68 @@ Application.load({
             type: 'GravWavatar',
             amount: 6,
         },
+                {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
         {
-            type: 'Robohash',
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravWavatar',
+            amount: 6,
+        },
+                {
+            type: 'GravWavatar',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravWavatar',
+            amount: 6,
+        },
+                {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravWavatar',
+            amount: 6,
+        },
+                {
+            type: 'GravWavatar',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravWavatar',
             amount: 6,
         },
      ]},  
