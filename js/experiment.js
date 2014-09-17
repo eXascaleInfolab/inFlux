@@ -19,7 +19,7 @@ $('#survey-submit').click(function(e) {
       e.preventDefault();
       if($('input[type=radio]:checked').length<=12)
       {
-        alert("Please answer all the items");
+        alert("Please answer faithfully all the question.");
       } else {
         // somehow .. try to make sure that the json is in the value of $("#data")
         $.ajax( { url: "https://api.mongolab.com/api/1/databases/influx/collections/"+Application.experiment.name+"?apiKey=FzmG9iesxbf045DUjY1tfo65U7584rWO",
