@@ -128,7 +128,7 @@ Application = StateMachine.create({
 
         var that = this;
 
-        TaskSet.load(this.experiment.sets[this.pointer], this.experiment.time);
+        TaskSet.load(this.experiment.sets[this.pointer], this.experiment.time || false);
         if (this.pointer < this.experiment.sets.length-1) {
             TaskSet.callBack = function () { that.ontaskset();};
         } else {
@@ -214,6 +214,26 @@ TaskFSM.prototype = {
 
     oncross: function() {
         var that = this;
+
+        function countDown(){
+           n--;
+           if(n == 0){
+              that.stop('timeout'); 
+              clearInterval(that.tm);
+           }
+           $("#timer").text(msToTime(n*100));
+        }
+
+        function msToTime(duration) {
+            var milliseconds = parseInt((duration%1000)/100)
+                , seconds = parseInt((duration/1000)%60)
+                , minutes = parseInt((duration/(1000*60))%60);
+            minutes = (minutes < 10) ? "0" + minutes : minutes;
+            seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+            return minutes + ":" + seconds + ":" + milliseconds;
+        }
+
         $(document).bind('keypress', function(e) {
             if (e.which == 106) {
                 e.preventDefault();
@@ -225,25 +245,10 @@ TaskFSM.prototype = {
             }
         });
 
-        var n = this.time * 10;
-        var tm = setInterval(countDown,100);
-        that.tm = tm;
-        function countDown(){
-           n--;
-           if(n == 0){
-              that.stop('timeout'); 
-              clearInterval(that.tm);
-           }
-           $("#timer").text(msToTime(n*100));
-        }
-        function msToTime(duration) {
-            var milliseconds = parseInt((duration%1000)/100)
-                , seconds = parseInt((duration/1000)%60)
-                , minutes = parseInt((duration/(1000*60))%60);
-            minutes = (minutes < 10) ? "0" + minutes : minutes;
-            seconds = (seconds < 10) ? "0" + seconds : seconds;
-
-            return minutes + ":" + seconds + ":" + milliseconds;
+        if (this.time) {
+            var n = this.time * 10;
+            var tm = setInterval(countDown,100);
+            that.tm = tm;
         }
 
         // prepare the test by deciding if similar figure is shown and if at which places
@@ -346,7 +351,6 @@ var task = {
 Application.load({
     name: "experiment_name",
     fullscreen: true,
-    time: 4,
     workerId: 0,
     assignmentId: 0,
     sets: [
