@@ -121,34 +121,39 @@ Application = StateMachine.create({
         $("#survey-close").hide();
         $('#submitButton').attr('disabled', true);
         $('#submitButton').hide();
-        // that = this;
-        // this.experiment.stop = new Date;
-        // this.experiment.overallTime = this.experiment.stop - this.experiment.start;
-        // $.ajax( { url: "https://api.mongolab.com/api/1/databases/moji/collections/"+this.experiment.name+"?apiKey=",
-        //       data: JSON.stringify( this.experiment ),
-        //       type: "POST",
-        //       contentType: "application/json",
-        //       success: function() {
-        //           $('#container-main').html(Template.message(
-        //               { title: "Thank you!", 
-        //                 paragraphs: [
-        //                 '',
-        //                 'That was it already, if you have any comments please feel free ...',
-        //                 '<form  action="#" onsubmit="$.ajax( {url: \'https://api.mongolab.com/api/1/databases/moji/collections/feedback?apiKey=\', data: JSON.stringify({feedback: $(\'#comments\').val(), time: new Date(), experiment: \''+that.experiment.name+'\',}), type: \'POST\', contentType: \'application/json\', success:function() {location.reload(true);},});"><textarea class="span8" rows="20" id="comments"></textarea>',
-        //                 '<input id="comments"class="btn" type="submit"></form>',
-        //                 ], 
-        //               }));},
-        //       error: function() {
-        //           var data = JSON.stringify( that.experiment );
-        //           $('#container-main').html(Template.message(
-        //               { title: "Thank you!", 
-        //                 paragraphs: [
-        //                 "",
-        //                 'There was a probleme with the internet connection. Could you please send me the following data by email to: <a href="mailto:moji.michael@oiu.ch?subject=[Moji Results] '+that.experiment.name+'&body='+escape(data)+'">moji.michael@oiu.ch</a>',
-        //                 '<textarea rows="20" class="span8">'+ data +'</textarea>'
-        //                 ], 
-        //               }));},
-        //     });
+        that = this;
+        this.experiment.stop = new Date;
+        this.experiment.overallTime = this.experiment.stop - this.experiment.start;
+        $.ajax( { url: "https://api.mongolab.com/api/1/databases/influx/collections/"+this.experiment.name+"?apiKey=FzmG9iesxbf045DUjY1tfo65U7584rWO",
+              data: JSON.stringify( this.experiment ),
+              type: "POST",
+              contentType: "application/json",
+              success: function() {
+                  // TODO: NOTHING, the form should submit the survey .. that's it.
+                  // $('#container-main').html(Template.message(
+                  //     { title: "Thank you!", 
+                  //       paragraphs: [
+                  //       '',
+                  //       'That was it already, if you have any comments please feel free ...',
+                  //       '<form  action="#" onsubmit="$.ajax( {url: \'https://api.mongolab.com/api/1/databases/moji/collections/feedback?apiKey=\', data: JSON.stringify({feedback: $(\'#comments\').val(), time: new Date(), experiment: \''+that.experiment.name+'\',}), type: \'POST\', contentType: \'application/json\', success:function() {location.reload(true);},});"><textarea class="span8" rows="20" id="comments"></textarea>',
+                  //       '<input id="comments"class="btn" type="submit"></form>',
+                  //       ], 
+                  //     }));
+              },
+              error: function() {
+                  // TODO: add daa to the form .. it will go to mturk.
+                  var data = JSON.stringify( that.experiment );
+                  
+                  // $('#container-main').html(Template.message(
+                  //     { title: "Thank you!", 
+                  //       paragraphs: [
+                  //       "",
+                  //       'There was a probleme with the internet connection. Could you please send me the following data by email to: <a href="mailto:moji.michael@oiu.ch?subject=[Moji Results] '+that.experiment.name+'&body='+escape(data)+'">moji.michael@oiu.ch</a>',
+                  //       '<textarea rows="20" class="span8">'+ data +'</textarea>'
+                  //       ], 
+                  //     }));
+                  },
+            });
         }, 
     }
 });
