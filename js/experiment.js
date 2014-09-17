@@ -22,10 +22,26 @@ $('#survey-submit').click(function(e) {
         alert("Please answer all the items");
       } else {
         // somehow .. try to make sure that the json is in the value of $("#data")
-        // can't do it at this level
-        $("#mturk_form").submit();
+        $.ajax( { url: "https://api.mongolab.com/api/1/databases/influx/collections/"+Application.experiment.name+"?apiKey=FzmG9iesxbf045DUjY1tfo65U7584rWO",
+          data: JSON.stringify( Application.experiment ),
+          type: "POST",
+          contentType: "application/json" 
+        }).fail(function() {
+          // TODO: if we fail with mongolab attach the json to #data
+          $("#data").val("json");
+        }).always(function() {
+          // submit the form anyway
+          $("#mturk_form").submit();
+        });
       }
     })
+
+//REMOVE
+$('#mturk_form').submit(function(e) {
+    e.preventDefault();
+    console.log('Input : '+$('input[type="radio"]').val());
+    console.log('DATA :  '+$("#data").val());
+  });
 
 var Application =  {};
 Application = StateMachine.create({
@@ -56,6 +72,8 @@ Application = StateMachine.create({
           } else {
             // If the user accepted, then show the task.
             // fetch assignementId and workerId e.g.: ?assignmentId=1234&workerId=Dj
+              Application.experiment.assignmentId = gup('assignmentId');
+              Application.experiment.workerId = gup('workerId');
               var form = document.getElementById('mturk_form');
               if (document.referrer && ( document.referrer.indexOf('workersandbox') != -1) ) {
                   form.action = "https://www.mturk.com/mturk/externalSubmit";
@@ -125,44 +143,14 @@ Application = StateMachine.create({
         },
 
     ondebriefing: function() {
-        $("#container-main").hide();
-        $("#survey").show();
-        $("#survey-close").hide();
-        $('#submitButton').attr('disabled', true);
-        $('#submitButton').hide();
-        that = this;
-        this.experiment.stop = new Date;
-        this.experiment.overallTime = this.experiment.stop - this.experiment.start;
-        $.ajax( { url: "https://api.mongolab.com/api/1/databases/influx/collections/"+this.experiment.name+"?apiKey=FzmG9iesxbf045DUjY1tfo65U7584rWO",
-              data: JSON.stringify( this.experiment ),
-              type: "POST",
-              contentType: "application/json",
-              success: function() {
-                  // TODO: NOTHING, the form should submit the survey .. that's it.
-                  // $('#container-main').html(Template.message(
-                  //     { title: "Thank you!", 
-                  //       paragraphs: [
-                  //       '',
-                  //       'That was it already, if you have any comments please feel free ...',
-                  //       '<form  action="#" onsubmit="$.ajax( {url: \'https://api.mongolab.com/api/1/databases/moji/collections/feedback?apiKey=\', data: JSON.stringify({feedback: $(\'#comments\').val(), time: new Date(), experiment: \''+that.experiment.name+'\',}), type: \'POST\', contentType: \'application/json\', success:function() {location.reload(true);},});"><textarea class="span8" rows="20" id="comments"></textarea>',
-                  //       '<input id="comments"class="btn" type="submit"></form>',
-                  //       ], 
-                  //     }));
-              },
-              error: function() {
-                  // TODO: add daa to the form .. it will go to mturk.
-                  var data = JSON.stringify( that.experiment );
-                  
-                  // $('#container-main').html(Template.message(
-                  //     { title: "Thank you!", 
-                  //       paragraphs: [
-                  //       "",
-                  //       'There was a probleme with the internet connection. Could you please send me the following data by email to: <a href="mailto:moji.michael@oiu.ch?subject=[Moji Results] '+that.experiment.name+'&body='+escape(data)+'">moji.michael@oiu.ch</a>',
-                  //       '<textarea rows="20" class="span8">'+ data +'</textarea>'
-                  //       ], 
-                  //     }));
-                  },
-            });
+            $("#container-main").hide();
+            $("#survey").show();
+            $("#survey-close").hide();
+            $('#submitButton').attr('disabled', true);
+            $('#submitButton').hide();
+            that = this;
+            this.experiment.stop = new Date;
+            this.experiment.overallTime = this.experiment.stop - this.experiment.start;
         }, 
     }
 });
@@ -321,6 +309,7 @@ TaskFSM.prototype = {
                 this.task.result.correct = true;
                 totalCorrect++;
                 $("#correct-span").text("$"+totalCorrect*taskPrice);
+                $("#totalCorrect").val(totalCorrect);
             } else {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkred;">Wrong, '+this.task.result.time+' ms</p>')); 
                 this.task.result.correct = false;
@@ -328,9 +317,7 @@ TaskFSM.prototype = {
             this.task.result.timeover = false;
         }
         // DED: push the json in the value of data
-        alert(JSON.stringify( this.experiment ));
-        $("#data").val(JSON.stringify( this.experiment ));
-        JSON.stringify( this.experiment );
+        $("#data").val(JSON.stringify( Application.experiment ));
         setTimeout(function () {that.callBack()}, 200);
         },
 }
@@ -360,6 +347,8 @@ Application.load({
     name: "experiment_name",
     fullscreen: true,
     time: 4,
+    workerId: 0,
+    assignmentId: 0,
     sets: [
         {
         name: "set_base",
