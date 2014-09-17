@@ -28,6 +28,25 @@ body .modal-admin {
     margin-left: -375px;
 }
 
+@media (min-width: 1200px) {
+    .container{
+        max-width: 970px;
+    }
+}
+
+.progress {
+  position: relative;
+}
+
+.progress span {
+    position: absolute;
+    display: block;
+    width: 100%;
+    color: black;
+    margin-top:-9px;
+}
+
+
 /* =============================================================================
    Base
    ========================================================================== */
