@@ -11,8 +11,7 @@ Application = StateMachine.create({
 
   events: [
     { name: 'load', from: 'initial', to: 'welcome' },
-    { name: 'prepareExperiment', from: 'welcome', to: 'prepare' },
-    { name: 'startExperiment', from: 'prepare', to: 'experiment' },
+    { name: 'startExperiment', from: 'welcome', to: 'experiment' },
     { name: 'startTaskSet', from: ['experiment', 'taskset'], to: 'taskset' },
     { name: 'finishExperiment', from: 'taskset', to: 'debriefing' }
   ],
@@ -38,7 +37,7 @@ Application = StateMachine.create({
               if (document.referrer && ( document.referrer.indexOf('workersandbox') != -1) ) {
                   form.action = "https://www.mturk.com/mturk/externalSubmit";
               }
-              Application.prepareExperiment();
+              Application.startExperiment();
           }
         }
     }, 
@@ -61,24 +60,6 @@ Application = StateMachine.create({
         $('#nav-welcome').toggleClass('active');
     },
 
-
-    onprepare: function() {
-        $('#nav-experiment').toggleClass('active');
-        $('#container-main').html(Template.message(
-          { title: "First Task", 
-            paragraphs: [
-                "",
-                "Okay now it is for real. Answer as fast and accurate as possible!",
-                "Press <a class=\"btn btn-inverse disabled\">J</a> for a set with a duplicate or press <a class=\"btn btn-inverse disabled\">space</a> if no duplicates are present.",
-                ], 
-            buttons: [{ 
-                label: "Go!",
-                class: "btn-primary btn-large",
-                onclick: "Application.startExperiment()",
-                },],
-            }));
-        },
-
     onexperiment: function() {
         this.experiment.start = new Date;
         //this.goFullscreen();
@@ -87,8 +68,9 @@ Application = StateMachine.create({
  
     ontaskset: function () {
         var TaskSet =  {
-            load : function (set) {
+            load : function (set, time) {
                 this.set = set;
+                this.time = time;
             },
             dispatch : function () {
                 var lefttasks = this.set.tasks.filter(function (el){return (el.result == undefined);});
@@ -106,7 +88,7 @@ Application = StateMachine.create({
 
         var that = this;
 
-        TaskSet.load(this.experiment.sets[this.pointer]);
+        TaskSet.load(this.experiment.sets[this.pointer], this.experiment.time);
         if (this.pointer < this.experiment.sets.length-1) {
             TaskSet.callBack = function () { that.ontaskset();};
         } else {
@@ -296,6 +278,7 @@ var task = {
 Application.load({
     name: "experiment_name",
     fullscreen: true,
+    time: 20,
     sets: [
         {
         name: "set_base",
