@@ -4,6 +4,20 @@ Template.message = Handlebars.compile($("#container-message").html());
 Template.trialmessage = Handlebars.compile($("#trial-message").html());
 Template.identicon = Handlebars.compile($("#div-block-ident").html());
 
+$('#submitButton').click(function(e) {
+      $("#container-main").hide();
+      $("#survey").show();
+      $('#submitButton').attr('disabled', true);
+    })
+$('#survey-close').click(function(e) {
+      $("#container-main").show();
+      $("#survey").hide();
+      $('#submitButton').attr('disabled', false);
+    })
+$('#survey-submit').click(function(e) {
+      // do something
+    })
+
 var Application =  {};
 Application = StateMachine.create({
 
@@ -102,34 +116,39 @@ Application = StateMachine.create({
         },
 
     ondebriefing: function() {
-        that = this;
-        this.experiment.stop = new Date;
-        this.experiment.overallTime = this.experiment.stop - this.experiment.start;
-        $.ajax( { url: "https://api.mongolab.com/api/1/databases/moji/collections/"+this.experiment.name+"?apiKey=",
-              data: JSON.stringify( this.experiment ),
-              type: "POST",
-              contentType: "application/json",
-              success: function() {
-                  $('#container-main').html(Template.message(
-                      { title: "Thank you!", 
-                        paragraphs: [
-                        '',
-                        'That was it already, if you have any comments please feel free ...',
-                        '<form  action="#" onsubmit="$.ajax( {url: \'https://api.mongolab.com/api/1/databases/moji/collections/feedback?apiKey=\', data: JSON.stringify({feedback: $(\'#comments\').val(), time: new Date(), experiment: \''+that.experiment.name+'\',}), type: \'POST\', contentType: \'application/json\', success:function() {location.reload(true);},});"><textarea class="span8" rows="20" id="comments"></textarea>',
-                        '<input id="comments"class="btn" type="submit"></form>',
-                        ], 
-                      }));},
-              error: function() {
-                  var data = JSON.stringify( that.experiment );
-                  $('#container-main').html(Template.message(
-                      { title: "Thank you!", 
-                        paragraphs: [
-                        "",
-                        'There was a probleme with the internet connection. Could you please send me the following data by email to: <a href="mailto:moji.michael@oiu.ch?subject=[Moji Results] '+that.experiment.name+'&body='+escape(data)+'">moji.michael@oiu.ch</a>',
-                        '<textarea rows="20" class="span8">'+ data +'</textarea>'
-                        ], 
-                      }));},
-            });
+        $("#container-main").hide();
+        $("#survey").show();
+        $("#survey-close").hide();
+        $('#submitButton').attr('disabled', true);
+        $('#submitButton').hide();
+        // that = this;
+        // this.experiment.stop = new Date;
+        // this.experiment.overallTime = this.experiment.stop - this.experiment.start;
+        // $.ajax( { url: "https://api.mongolab.com/api/1/databases/moji/collections/"+this.experiment.name+"?apiKey=",
+        //       data: JSON.stringify( this.experiment ),
+        //       type: "POST",
+        //       contentType: "application/json",
+        //       success: function() {
+        //           $('#container-main').html(Template.message(
+        //               { title: "Thank you!", 
+        //                 paragraphs: [
+        //                 '',
+        //                 'That was it already, if you have any comments please feel free ...',
+        //                 '<form  action="#" onsubmit="$.ajax( {url: \'https://api.mongolab.com/api/1/databases/moji/collections/feedback?apiKey=\', data: JSON.stringify({feedback: $(\'#comments\').val(), time: new Date(), experiment: \''+that.experiment.name+'\',}), type: \'POST\', contentType: \'application/json\', success:function() {location.reload(true);},});"><textarea class="span8" rows="20" id="comments"></textarea>',
+        //                 '<input id="comments"class="btn" type="submit"></form>',
+        //                 ], 
+        //               }));},
+        //       error: function() {
+        //           var data = JSON.stringify( that.experiment );
+        //           $('#container-main').html(Template.message(
+        //               { title: "Thank you!", 
+        //                 paragraphs: [
+        //                 "",
+        //                 'There was a probleme with the internet connection. Could you please send me the following data by email to: <a href="mailto:moji.michael@oiu.ch?subject=[Moji Results] '+that.experiment.name+'&body='+escape(data)+'">moji.michael@oiu.ch</a>',
+        //                 '<textarea rows="20" class="span8">'+ data +'</textarea>'
+        //                 ], 
+        //               }));},
+        //     });
         }, 
     }
 });
@@ -272,6 +291,11 @@ TaskFSM.prototype = {
         var that = this;
         this.task.result = {}
         this.task.result.time = new Date().getTime() - this.timeStart;
+        totalDone++;
+        var leftTasks = totalTasks - totalDone;
+        var percentLeft = leftTasks/totalTasks *100;
+        $("#progress-div").css({"width" : percentLeft+"%"});
+        $("#progress-span").text(leftTasks + " tasks available");
         if (msg == 'timeout') {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkorange;">Time over!, '+this.task.result.time+' ms</p>')); 
                 this.task.result.correct = false;
@@ -281,15 +305,25 @@ TaskFSM.prototype = {
             if (this.task.similar == msg) {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkgreen;">Correct, '+this.task.result.time+' ms</p>')); 
                 this.task.result.correct = true;
+                totalCorrect++;
+                $("#correct-span").text("$"+totalCorrect*taskPrice);
             } else {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkred;">Wrong, '+this.task.result.time+' ms</p>')); 
                 this.task.result.correct = false;
             }
             this.task.result.timeover = false;
         }
-        setTimeout(function () {that.callBack()}, 1200);
+        setTimeout(function () {that.callBack()}, 200);
         },
 }
+
+var totalTasks = 20;
+var totalCorrect = 0;
+var totalDone = 0;
+var taskPrice = 0.01;
+
+$("#progress-div").css({"width" : "100%"});
+$("#progress-span").text(totalTasks + " tasks available");
 
 var task = {
   target: TaskFSM.prototype,
@@ -312,6 +346,10 @@ Application.load({
         {
         name: "set_base",
         tasks: [
+        {
+            type: 'Figure',
+            amount: 6,
+        },
         {
             type: 'Figure',
             amount: 6,
