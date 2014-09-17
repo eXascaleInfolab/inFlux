@@ -135,7 +135,7 @@ Application = StateMachine.create({
 });
 
 Application.goFullscreen = function () {
-    $('.navbar').hide('fast');
+    //$('.navbar').hide('fast');
     $('#container-main').height($(document).height());
     if (this.experiment.fullscreen) {
         var docElm = document.documentElement;
@@ -152,7 +152,7 @@ Application.goFullscreen = function () {
 };
 
 Application.leaveFullscreen = function () {
-    $('.navbar').show('slow');
+    //$('.navbar').show('slow');
     $('#container-main').height('auto');
     if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -204,7 +204,25 @@ TaskFSM.prototype = {
             }
         });
 
-        setTimeout(function () {that.stop('timeout');}, this.time*1000);
+        var n = this.time * 10;
+        var tm = setInterval(countDown,100);
+        function countDown(){
+           n--;
+           if(n == 0){
+              that.stop('timeout'); 
+              clearInterval(tm);
+           }
+           $("#timer").text(msToTime(n*100));
+        }
+        function msToTime(duration) {
+            var milliseconds = parseInt((duration%1000)/100)
+                , seconds = parseInt((duration/1000)%60)
+                , minutes = parseInt((duration/(1000*60))%60);
+            minutes = (minutes < 10) ? "0" + minutes : minutes;
+            seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+            return minutes + ":" + seconds + ":" + milliseconds;
+        }
 
         // prepare the test by deciding if similar figure is shown and if at which places
         var a,b;

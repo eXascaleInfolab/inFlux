@@ -43,7 +43,7 @@
                 <ul class="nav pull-right">
                     <li class="divider"></li>
                      <li id="nav-fullscreen">
-                        <a href="#"><i class="icon-fullscreen"></i> Fullscreen</a>
+                        <a href="#" onclick="Application.goFullscreen()"><i class="icon-fullscreen"></i> Fullscreen</a>
                     </li>
                 </ul>
             </div><!-- /.nav-collapse -->
@@ -85,7 +85,7 @@
 
   <script id="trial-message" type="text/x-handlebars-template">
     <div class="row">
-        <div class="span10 well" style="padding: 0px; height: 500px; display:table; text-align:center;">
+        <div class="span10 well" style="padding: 0px; height: 300px; display:table; text-align:center;">
              <div style="display: table-cell; vertical-align: middle;">{{{this}}}</div>
         </div>
     </div>
@@ -93,7 +93,7 @@
         <div class="span10 text-center">
           <span class="pull-left"><a class="btn btn-inverse disabled">J</a> found duplicate</span>
           <span class="pull-right">all unique <a class="btn btn-inverse disabled">space</a></span>
-          <span><a class="btn btn-danger disabled"> 00.00.00</a></span></div>
+          <span><a class="btn btn-danger disabled" id="timer"> 00:00:0</a></span></div>
         </div>
     </div>
   </script>
