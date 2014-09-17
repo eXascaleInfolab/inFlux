@@ -5,16 +5,13 @@ Template.trialmessage = Handlebars.compile($("#trial-message").html());
 Template.identicon = Handlebars.compile($("#div-block-ident").html());
 
 var Application =  {};
-var test;
 Application = StateMachine.create({
 
   initial: 'initial',
 
   events: [
     { name: 'load', from: 'initial', to: 'welcome' },
-    { name: 'giveExplanation', from: 'welcome', to: 'explain' },
-    { name: 'doIntro', from: 'explain', to: 'intro' },
-    { name: 'prepareExperiment', from: ['intro','explain','welcome','debriefing'], to: 'prepare' },
+    { name: 'prepareExperiment', from: 'welcome', to: 'prepare' },
     { name: 'startExperiment', from: 'prepare', to: 'experiment' },
     { name: 'startTaskSet', from: ['experiment', 'taskset'], to: 'taskset' },
     { name: 'finishExperiment', from: 'taskset', to: 'debriefing' }
@@ -24,6 +21,26 @@ Application = StateMachine.create({
     onload: function (event, from, to, msg) {
         this.experiment = msg;
         this.pointer = 0;
+
+        if( document.getElementById('assignmentId') ){
+          document.getElementById('assignmentId').value = gup('assignmentId');
+        }
+        if (document.getElementById('submitButton')) {
+          if (gup('assignmentId') == "ASSIGNMENT_ID_NOT_AVAILABLE" || gup('assignmentId')=="")
+          {
+            // If we're previewing, disable the button and give it a helpful message
+            document.getElementById('submitButton').className += " disabled";
+            document.getElementById('submitButton').innerHTML = "You must ACCEPT the HIT before you can submit the results.";
+          } else {
+            // If the user accepted, then show the task.
+            // fetch assignementId and workerId e.g.: ?assignmentId=1234&workerId=Dj
+              var form = document.getElementById('mturk_form');
+              if (document.referrer && ( document.referrer.indexOf('workersandbox') != -1) ) {
+                  form.action = "https://www.mturk.com/mturk/externalSubmit";
+              }
+              Application.prepareExperiment();
+          }
+        }
     }, 
 
     onwelcome: function() { $('#container-main').html(Template.message(
@@ -44,44 +61,6 @@ Application = StateMachine.create({
         $('#nav-welcome').toggleClass('active');
     },
 
-    onexplain: function() {
-        $('#nav-introduction').toggleClass('active');
-        $('#container-main').html(Template.message(
-          { title: "What to do?", 
-            paragraphs: [
-            "", 
-            "First of all, I am not testing you or your ability in any sense. (I don't know even who you are as the test is done anonymously.)",
-            "Much more I try to optimize my Identicons. What the heck are Identicons? They are a visual represenation of large identifiers such as <i style=\"font-size:small\">0afc8b58d218d6220d5efdd2509754d13d9e1c55</i>.",
-            "After you proceed, you will see different amounts of these identifiers or identicons. Your task is to look as fast as possible for duplicates.",
-            "If you find a duplicate press <a class=\"btn btn-inverse disabled\">J</a> otherwise press <a class=\"btn btn-inverse disabled\">space<a>.",
-            ], 
-            buttons: [{ 
-                label: "Next",
-                onclick: "Application.doIntro()",
-                class: "btn-large btn-primary"
-            },],
-        })); },
-
-
-    onintro: function () { 
-        var that = this;
-        var t1 = StateMachine.create(task);
-        t1.callBack = function () { that.prepareExperiment();};
-
-        var taskDescription =  {
-            type: 'Figure',
-            amount: 5,
-            similar: true,
-        };
-
-        t1.load(taskDescription);
-        //this.goFullscreen();
-    },
-
-    onleaveintro: function () {
-        this.leaveFullscreen();
-        $('#nav-introduction').toggleClass('active');
-    },
 
     onprepare: function() {
         $('#nav-experiment').toggleClass('active');
@@ -107,7 +86,6 @@ Application = StateMachine.create({
         },
  
     ontaskset: function () {
- 
         var TaskSet =  {
             load : function (set) {
                 this.set = set;

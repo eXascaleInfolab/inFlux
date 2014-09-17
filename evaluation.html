@@ -18,32 +18,7 @@
        Modernizr enables HTML5 elements & feature detects for optimal performance.
        Create your own custom Modernizr build: www.modernizr.com/download/ -->
   <script src="js/vendor/modernizr-2.5.3.min.js"></script>
-  <!-- for Mturk -->
-  <script language="Javascript">
-      //
-      // This method Gets URL Parameters (GUP)
-      //
-      function gup( name )
-      {
-        var regexS = "[\\?&]"+name+"=([^&#]*)";
-        var regex = new RegExp( regexS );
-        var tmpURL = window.location.href;
-        var results = regex.exec( tmpURL );
-        if( results == null )
-          return "";
-        else
-          return results[1];
-      }
-
-      //
-      // This method decodes the query parameters that were URL-encoded
-      //
-      function decode(strToDecode)
-      {
-        var encoded = strToDecode;
-        return unescape(encoded.replace(/\+/g,  " "));
-      }
-  </script>
+  <script src="js/utils.js"></script>
 </head>
 <body style="padding-top: 10px;">
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
@@ -118,28 +93,6 @@
       <div class="span10 offset1"><span><a class="btn btn-inverse disabled">J</a> found duplicate</span>
       <span class="pull-right">all unique <a class="btn btn-inverse disabled">space</a></span></div>
   </div>
-  </script>
-
-  <!-- Mechanical Turk -->
-  <script language="Javascript">
-    if( document.getElementById('assignmentId') ){
-      document.getElementById('assignmentId').value = gup('assignmentId');
-    }
-    if (document.getElementById('submitButton')) {
-      if (gup('assignmentId') == "ASSIGNMENT_ID_NOT_AVAILABLE" || gup('assignmentId')=="")
-      {
-        // If we're previewing, disable the button and give it a helpful message
-        document.getElementById('submitButton').className += " disabled";
-        document.getElementById('submitButton').innerHTML = "You must ACCEPT the HIT before you can submit the results.";
-      } else {
-        // If the user accepted, then show the task.
-        // fetch assignementId and workerId e.g.: ?assignmentId=1234&workerId=Dj
-          var form = document.getElementById('mturk_form');
-          if (document.referrer && ( document.referrer.indexOf('workersandbox') != -1) ) {
-              form.action = "https://www.mturk.com/mturk/externalSubmit";
-          }
-      }
-    }
   </script>
 
   <!-- Modal -->
