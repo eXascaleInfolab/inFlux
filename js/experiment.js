@@ -10,12 +10,21 @@ $('#submitButton').click(function(e) {
       $('#submitButton').attr('disabled', true);
     })
 $('#survey-close').click(function(e) {
+      e.preventDefault();
       $("#container-main").show();
       $("#survey").hide();
       $('#submitButton').attr('disabled', false);
     })
 $('#survey-submit').click(function(e) {
-      // do something
+      e.preventDefault();
+      if($('input[type=radio]:checked').length<=12)
+      {
+        alert("Please answer all the items");
+      } else {
+        // somehow .. try to make sure that the json is in the value of $("#data")
+        // can't do it at this level
+        $("#mturk_form").submit();
+      }
     })
 
 var Application =  {};
@@ -318,6 +327,10 @@ TaskFSM.prototype = {
             }
             this.task.result.timeover = false;
         }
+        // DED: push the json in the value of data
+        alert(JSON.stringify( this.experiment ));
+        $("#data").val(JSON.stringify( this.experiment ));
+        JSON.stringify( this.experiment );
         setTimeout(function () {that.callBack()}, 200);
         },
 }
