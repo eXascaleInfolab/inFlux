@@ -55,7 +55,6 @@ Application = StateMachine.create({
                 ]
         })); },
 
-
     onleavewelcome: function() {
         $('#nav-welcome').toggleClass('active');
     },
@@ -65,7 +64,7 @@ Application = StateMachine.create({
         //this.goFullscreen();
         this.startTaskSet();
         },
- 
+
     ontaskset: function () {
         var TaskSet =  {
             load : function (set, time) {
@@ -77,7 +76,7 @@ Application = StateMachine.create({
                 if (lefttasks.length > 0) {
                     var tasktodo = lefttasks[Math.floor(Math.random()*lefttasks.length)];
                     var fsm = StateMachine.create(task);
-                    fsm.load(tasktodo);
+                    fsm.load(tasktodo, this.time);
                     var thattaskset = this;
                     fsm.callBack = function () {thattaskset.dispatch()};
                 } else {
@@ -172,8 +171,9 @@ TaskFSM = function () {
 
 TaskFSM.prototype = {
 
-    onload: function (event, from, to, msg) {
+    onload: function (event, from, to, msg, time) {
         this.task = msg;
+        this.time = time;
     },
 
     onready: function() {
@@ -203,6 +203,8 @@ TaskFSM.prototype = {
                 that.stop(false);
             }
         });
+
+        setTimeout(function () {that.stop('timeout');}, this.time*1000);
 
         // prepare the test by deciding if similar figure is shown and if at which places
         var a,b;
@@ -251,12 +253,19 @@ TaskFSM.prototype = {
         var that = this;
         this.task.result = {}
         this.task.result.time = new Date().getTime() - this.timeStart;
-        if (this.task.similar == msg) {
-            $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkgreen;">Correct, '+this.task.result.time+' ms</p>')); 
-            this.task.result.correct = true;
+        if (msg == 'timeout') {
+                $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkorange;">Time over!, '+this.task.result.time+' ms</p>')); 
+                this.task.result.correct = false;
+                this.task.result.timeover = true;
         } else {
-            $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkred;">Wrong, '+this.task.result.time+' ms</p>')); 
-            this.task.result.correct = false;
+            if (this.task.similar == msg) {
+                $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkgreen;">Correct, '+this.task.result.time+' ms</p>')); 
+                this.task.result.correct = true;
+            } else {
+                $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkred;">Wrong, '+this.task.result.time+' ms</p>')); 
+                this.task.result.correct = false;
+            }
+            this.task.result.timeover = false;
         }
         setTimeout(function () {that.callBack()}, 1200);
         },
@@ -278,7 +287,7 @@ var task = {
 Application.load({
     name: "experiment_name",
     fullscreen: true,
-    time: 20,
+    time: 4,
     sets: [
         {
         name: "set_base",
