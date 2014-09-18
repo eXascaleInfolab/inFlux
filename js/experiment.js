@@ -37,11 +37,11 @@ $('#survey-submit').click(function(e) {
     })
 
 //REMOVE
-$('#mturk_form').submit(function(e) {
-    e.preventDefault();
-    console.log('Input : '+$('input[type="radio"]').val());
-    console.log('DATA :  '+$("#data").val());
-  });
+// $('#mturk_form').submit(function(e) {
+//     e.preventDefault();
+//     console.log('Input : '+$('input[type="radio"]').val());
+//     console.log('DATA :  '+$("#data").val());
+//   });
 
 var actuator = new HTMLActuator();
 
