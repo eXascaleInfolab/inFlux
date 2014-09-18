@@ -38,6 +38,114 @@ audio:not([controls]) { display: none; }
     margin-top:-9px;
 }
 
+@-webkit-keyframes move-up {
+  0% {
+    top: 25px;
+    opacity: 1; }
+
+  100% {
+    top: -50px;
+    opacity: 0; } }
+@-moz-keyframes move-up {
+  0% {
+    top: 25px;
+    opacity: 1; }
+
+  100% {
+    top: -50px;
+    opacity: 0; } }
+@keyframes move-up {
+  0% {
+    top: 25px;
+    opacity: 1; }
+
+  100% {
+    top: -50px;
+    opacity: 0; } }
+.scores-container {
+  float: right;
+  text-align: right; 
+  padding: 5px; }
+
+.score-container, .count-container {
+  position: relative;
+  display: inline-block;
+  background: #E8923B;
+  padding: 15px 25px;
+  font-size: 25px;
+  height: 25px;
+  line-height: 47px;
+  font-weight: bold;
+  border-radius: 3px;
+  color: white;
+  margin-top: 8px;
+  text-align: center; }
+  .score-container:after, .count-container:after {
+    position: absolute;
+    width: 100%;
+    top: 10px;
+    left: 0;
+    text-transform: uppercase;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: center;
+    color: #eee4da; }
+  .score-container .score-addition, .count-container .score-addition {
+    position: absolute;
+    right: 30px;
+    color: red;
+    font-size: 25px;
+    line-height: 25px;
+    font-weight: bold;
+    color: rgba(119, 110, 101, 0.9);
+    z-index: 100;
+    -webkit-animation: move-up 600ms ease-in;
+    -moz-animation: move-up 600ms ease-in;
+    animation: move-up 600ms ease-in;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    animation-fill-mode: both; }
+
+.score-container:after {
+  content: "Bonus $"; }
+
+.count-container:after {
+  content: "Tasks"; }
+
+.fullscreen-container:after {
+  content: "full"; }
+
+.submit-container, .fullscreen-container {
+  position: relative;
+  display: inline-block;
+  background: #5D6A70;
+  padding: 15px 25px;
+  font-size: 25px;
+  height: 25px;
+  line-height: 47px;
+  font-weight: bold;
+  border-radius: 3px;
+  color: white;
+  margin-top: 8px;
+  text-align: center; 
+  cursor: pointer;}
+  .submit-container:after, .fullscreen-container:after {
+    position: absolute;
+    width: 100%;
+    top: 10px;
+    left: 0;
+    text-transform: uppercase;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: center;
+    color: #eee4da;
+    content: "Submit"; }
+  .fullscreen-container:after {
+  content: "full"; }
+a.submit-container, a.fullscreen-container, a.submit-container:hover , a.fullscreen-container:hover, a.submit-container:focus , a.fullscreen-container:focus {
+    color: white;
+    text-decoration: none;
+}
 
 /* =============================================================================
    Base

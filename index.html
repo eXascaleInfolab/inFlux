@@ -10,10 +10,10 @@
   <meta name="description" content="">
   <!-- Mobile viewport optimized: h5bp.com/viewport -->
   <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="css/style.css">
   <link href='//fonts.googleapis.com/css?family=Belgrano' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
   <!-- All JavaScript at the bottom, except this Modernizr build.
        Modernizr enables HTML5 elements & feature detects for optimal performance.
        Create your own custom Modernizr build: www.modernizr.com/download/ -->
@@ -25,31 +25,16 @@
        chromium.org/developers/how-tos/chrome-frame-getting-started -->
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
   
-<div class="navbar container">
-    <div class="navbar-inner">
-        <div class="container">
-            <div class="nav-collapse">
-                <div class="pull-right">
-                  <a href="#" id="submitButton" class="btn btn-danger" role="button"> Submit Results</a>
-                </div>
-                <div class="nav navbar-text progress" style="width: 300px; margin-top:10px">
-                  <div class="bar bar-info" id="progress-div" style="width: 100%;"><span class="show" id="progress-span">20 tasks available</span></div>
-                </div>
-                <ul class="nav">
-                    <li id="nav-bonus">
-                        <a href="#" class="disabled">Bonus : <span class="badge badge-info" id="correct-span">$0.00</span></a>
-                    </li>
-                </ul>
-                <ul class="nav pull-right">
-                    <li class="divider"></li>
-                     <li id="nav-fullscreen">
-                        <a href="#" onclick="Application.goFullscreen()"><i class="icon-fullscreen"></i> Fullscreen</a>
-                    </li>
-                </ul>
-            </div><!-- /.nav-collapse -->
-        </div>
-    </div><!-- /navbar-inner -->
-</div><!-- /navbar -->
+<div class="container">
+  <div class="heading">
+      <div class="scores-container">
+        <div id="correct-span" class="score-container">0.00</div>
+        <div id="total-span" class="count-container"></div>
+        <a id="fullscreen" href="#" onclick="Application.goFullscreen()" class="fullscreen-container"><i class="icon-fullscreen"></i></a>
+        <a href="#" id="submitButton" role="button" class="submit-container"><i class="icon-arrow-right"></i></a>
+      </div>
+    </div>
+</div>
 
 <div id="container-main" class="container">
     <div class="row">
@@ -99,7 +84,6 @@
 <!-- <div id="submitModal" class="modal hide fade modal-admin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;"> -->
 <div id="survey" class="container" style="display: none;">
 <div class="alert alert-danger">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
   <strong>Important!</strong> To receive your payment you need to answer the following questionaire and click submit.
 </div>
 <form id="mturk_form" action="https://www.mturk.com/mturk/externalSubmit" method="post">
@@ -295,13 +279,14 @@
 
 
   <!-- scripts concatenated and minified via build script -->
-  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  <script src="js/vendor/bootstrap.min.js"></script>
   <script src="js/vendor/cryptojs/rollups/sha1.js"></script>
   <script src="js/vendor/fsm/state-machine.js"></script>
   <script src="js/vendor/handlebars-1.0.0.beta.6.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/geom.js"></script>
   <script src="js/libmoji.js"></script>
+  <script src="js/html_actuator.js"></script>
   <script src="js/experiment.js"></script>
   <!-- end scripts -->
 </body>

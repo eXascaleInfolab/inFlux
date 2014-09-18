@@ -7,13 +7,13 @@ Template.identicon = Handlebars.compile($("#div-block-ident").html());
 $('#submitButton').click(function(e) {
       $("#container-main").hide();
       $("#survey").show();
-      $('#submitButton').attr('disabled', true);
+      $('#submitButton').hide();
     })
 $('#survey-close').click(function(e) {
       e.preventDefault();
       $("#container-main").show();
       $("#survey").hide();
-      $('#submitButton').attr('disabled', false);
+      $('#submitButton').show();
     })
 $('#survey-submit').click(function(e) {
       e.preventDefault();
@@ -43,6 +43,8 @@ $('#mturk_form').submit(function(e) {
     console.log('DATA :  '+$("#data").val());
   });
 
+var actuator = new HTMLActuator();
+
 var Application =  {};
 Application = StateMachine.create({
 
@@ -59,6 +61,7 @@ Application = StateMachine.create({
     onload: function (event, from, to, msg) {
         this.experiment = msg;
         this.pointer = 0;
+        $("#total-span").text(totalTasks);
 
         if( document.getElementById('assignmentId') ){
           document.getElementById('assignmentId').value = gup('assignmentId');
@@ -67,8 +70,8 @@ Application = StateMachine.create({
           if (gup('assignmentId') == "ASSIGNMENT_ID_NOT_AVAILABLE" || gup('assignmentId')=="")
           {
             // If we're previewing, disable the button and give it a helpful message
-            document.getElementById('submitButton').className += " disabled";
-            document.getElementById('submitButton').innerHTML = "Submit Results";
+            $('#submitButton').hide();
+            $('#fullscreen').hide();
           } else {
             // If the user accepted, then show the task.
             // fetch assignementId and workerId e.g.: ?assignmentId=1234&workerId=Dj
@@ -88,11 +91,11 @@ Application = StateMachine.create({
             paragraphs: [
                 "<h3>Instructions</h3>",
                 "We will show you a set of icons, and your task is to detect if there are duplicates among them.",
-                "Press <a class=\"btn btn-inverse disabled\">J</a> if there is a duplicate.",
+                "Press <a class=\"btn btn-inverse disabled\">J</a> if you find a duplicate.",
                 "Press <a class=\"btn btn-inverse disabled\">space</a> if no duplicates are present.",
-                "For each correct question you receive <a class=\"btn btn-success disabled\">$0.01</a> bonus.",
+                "For each correct answer, you will receive <a class=\"btn btn-warning disabled\">$0.01</a> bonus.",
                 "<hr>",
-                "To receive your bonus, click on the <a class=\"btn btn-danger disabled\">Submit Results</a> button and answer a very short questionnaire before submitting.",
+                "<div class=\"alert alert-danger\"><h4 class=\"alert-heading\">Important notes to receive the bonus!</h4><ul><li>Please try to do all or available tasks.</li> <li>If you are tired before completing all the available tasks, click on the <a class=\"btn btn-inverse disabled\">Submit</a> button</li><li>Answer faithfully the final questionnaire.</li> <ul></div>",
                 ]
         })); },
 
@@ -205,7 +208,7 @@ TaskFSM.prototype = {
                 that.set();
             }
         });
-        $('#container-main').html(Template.trialmessage("If you are ready, please press <a class=\"btn btn-inverse disabled\">space</a> to start."));
+        $('#container-main').html(Template.trialmessage("If you are ready, press <a class=\"btn btn-inverse disabled\">space</a> for the next task."));
     },
 
     onleaveready: function () {
@@ -301,8 +304,7 @@ TaskFSM.prototype = {
         totalDone++;
         var leftTasks = totalTasks - totalDone;
         var percentLeft = leftTasks/totalTasks *100;
-        $("#progress-div").css({"width" : percentLeft+"%"});
-        $("#progress-span").text(leftTasks + " tasks available");
+        $("#total-span").text(leftTasks);
         if (msg == 'timeout') {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkorange;">Time over!, '+this.task.result.time+' ms</p>')); 
                 this.task.result.correct = false;
@@ -313,8 +315,9 @@ TaskFSM.prototype = {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkgreen;">Correct, '+this.task.result.time+' ms</p>')); 
                 this.task.result.correct = true;
                 totalCorrect++;
-                $("#correct-span").text("$"+totalCorrect*taskPrice);
+                actuator.updateScore(totalCorrect*taskPrice)
                 $("#totalCorrect").val(totalCorrect);
+
             } else {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkred;">Wrong, '+this.task.result.time+' ms</p>')); 
                 this.task.result.correct = false;
@@ -323,17 +326,14 @@ TaskFSM.prototype = {
         }
         // DED: push the json in the value of data
         $("#data").val(JSON.stringify( Application.experiment ));
-        setTimeout(function () {that.callBack()}, 400);
+        setTimeout(function () {that.callBack();}, 400);
         },
 }
 
-var totalTasks = 20;
+var totalTasks = 200;
 var totalCorrect = 0;
 var totalDone = 0;
 var taskPrice = 0.01;
-
-$("#progress-div").css({"width" : "100%"});
-$("#progress-span").text(totalTasks + " tasks available");
 
 var task = {
   target: TaskFSM.prototype,
@@ -349,7 +349,7 @@ var task = {
 };
 
 Application.load({
-    name: "experiment_name",
+    name: "exp1_GravRetro_200_pause_notimer",
     fullscreen: true,
     workerId: 0,
     assignmentId: 0,
@@ -358,11 +358,7 @@ Application.load({
         name: "set_validation",
         tasks: [
         {
-            type: 'GravMonsterid',
-            amount: 6,
-        },
-        {
-            type: 'GravMonsterid',
+            type: 'GravRetro',
             amount: 6,
         },
         {
@@ -370,15 +366,63 @@ Application.load({
             amount: 6,
         },
         {
-            type: 'GravWavatar',
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
             amount: 6,
         },
                 {
-            type: 'GravMonsterid',
-            amount: 6,
-        },
-        {
-            type: 'GravMonsterid',
+            type: 'GravRetro',
             amount: 6,
         },
         {
@@ -386,15 +430,83 @@ Application.load({
             amount: 6,
         },
         {
-            type: 'GravWavatar',
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
             amount: 6,
         },
                 {
-            type: 'GravWavatar',
-            amount: 6,
-        },
-        {
-            type: 'GravMonsterid',
+            type: 'GravRetro',
             amount: 6,
         },
         {
@@ -402,7 +514,79 @@ Application.load({
             amount: 6,
         },
         {
-            type: 'GravWavatar',
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
             amount: 6,
         },
                 {
@@ -410,7 +594,7 @@ Application.load({
             amount: 6,
         },
         {
-            type: 'GravMonsterid',
+            type: 'GravRetro',
             amount: 6,
         },
         {
@@ -418,15 +602,79 @@ Application.load({
             amount: 6,
         },
         {
-            type: 'GravWavatar',
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
             amount: 6,
         },
                 {
-            type: 'GravWavatar',
-            amount: 6,
-        },
-        {
-            type: 'GravMonsterid',
+            type: 'GravRetro',
             amount: 6,
         },
         {
@@ -434,9 +682,481 @@ Application.load({
             amount: 6,
         },
         {
-            type: 'GravWavatar',
+            type: 'GravRetro',
             amount: 6,
         },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+               {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+                {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+                {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+                {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+                {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        },
+        {
+            type: 'GravRetro',
+            amount: 6,
+        }
      ]},  
     ],
 });
