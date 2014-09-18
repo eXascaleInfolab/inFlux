@@ -305,7 +305,6 @@ TaskFSM.prototype = {
         var leftTasks = totalTasks - totalDone;
         var percentLeft = leftTasks/totalTasks *100;
         $("#total-span").text(leftTasks);
-        $("#totalCorrect").val(totalDone);
         if (msg == 'timeout') {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkorange;">Time over!, '+this.task.result.time+' ms</p>')); 
                 this.task.result.correct = false;
