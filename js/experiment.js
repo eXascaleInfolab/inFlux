@@ -302,6 +302,7 @@ TaskFSM.prototype = {
         this.task.result = {}
         this.task.result.time = new Date().getTime() - this.timeStart;
         totalDone++;
+        $("#totalDone").val(totalDone);
         var leftTasks = totalTasks - totalDone;
         var percentLeft = leftTasks/totalTasks *100;
         $("#total-span").text(leftTasks);
