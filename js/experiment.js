@@ -71,7 +71,6 @@ Application = StateMachine.create({
           {
             // If we're previewing, disable the button and give it a helpful message
             $('#submitButton').hide();
-            $('#fullscreen').hide();
           } else {
             // If the user accepted, then show the task.
             // fetch assignementId and workerId e.g.: ?assignmentId=1234&workerId=Dj
