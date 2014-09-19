@@ -207,6 +207,7 @@ TaskFSM.prototype = {
             }
         });
         $('#container-main').html(Template.trialmessage("If you are ready, press <a class=\"btn btn-inverse disabled\">space</a> for the next task."));
+        $("#timer").text("--:--:-");
     },
 
     onleaveready: function () {
@@ -356,6 +357,7 @@ Application.load({
     fullscreen: true,
     workerId: 0,
     assignmentId: 0,
+    time: '5',
     sets: [
       {
         name: "set_validation",
