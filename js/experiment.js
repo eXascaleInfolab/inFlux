@@ -354,813 +354,813 @@ var task = {
 };
 
 Application.load({
-    name: "exp2_Minimal_200_pause_timer10sec",
+    name: "exp3_GravMonsterid_200_pause_timer2sec",
     fullscreen: true,
     workerId: 0,
     assignmentId: 0,
-    time: '10',
+    time: '2',
     sets: [
       {
         name: "set_validation",
         tasks: [
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
-            amount: 6,
-        },
-                {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
                 {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
                 {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
                 {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+                {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
             amount: 6,
         },
                {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
-            amount: 6,
-        },
-                {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
-            amount: 6,
-        },
-        {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
                 {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
                 {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
                 {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
             amount: 6,
         },
         {
-            type: 'Minimal',
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+                {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 6,
+        },
+        {
+            type: 'GravMonsterid',
             amount: 6,
         }
      ]},  
