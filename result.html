@@ -130,7 +130,7 @@
                         $.each(experiment.sets, function(key, set) {
                             $.each(set.tasks, function(key, task) {
                                 if (task.result) {
-                                    datatable.push({'trial': experiment._id.$oid, 'set': set.name, 'type': task.type, 'amount': task.amount, 'similar': task.similar, 'time': task.result.time , 'correct': task.result.correct?1:0});
+                                    datatable.push({'trial': experiment._id.$oid, 'set': set.name, 'workerId': experiment.workerId ,'type': task.type, 'amount': task.amount, 'similar': task.similar, 'time': task.result.time , 'correct': task.result.correct?1:0});
                                 }
                             });
                         });
