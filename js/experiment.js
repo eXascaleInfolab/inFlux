@@ -303,7 +303,6 @@ TaskFSM.prototype = {
         var leftTasks = totalTasks - totalDone;
         var percentLeft = leftTasks/totalTasks *100;
         $("#total-span").text(leftTasks);
-        $("#totalCorrect").val(totalDone);
         if (msg == 'timeout') {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkorange;">Time over!, '+this.task.result.time+' ms</p>')); 
                 this.task.result.correct = false;
@@ -351,7 +350,7 @@ var task = {
 };
 
 Application.load({
-    name: "exp1_GravRetro_200_pause_notimer",
+    name: "exp1_Minimal_200_pause_notimer",
     fullscreen: true,
     workerId: 0,
     assignmentId: 0,
@@ -360,803 +359,803 @@ Application.load({
         name: "set_validation",
         tasks: [
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
-            amount: 6,
-        },
-                {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
                 {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
                 {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
                 {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
+            amount: 6,
+        },
+                {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
             amount: 6,
         },
                {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
-            amount: 6,
-        },
-                {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
-            amount: 6,
-        },
-        {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
                 {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
                 {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
                 {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
             amount: 6,
         },
         {
-            type: 'GravRetro',
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+                {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
+            amount: 6,
+        },
+        {
+            type: 'Minimal',
             amount: 6,
         }
      ]},  
