@@ -27,8 +27,9 @@ $('#survey-submit').click(function(e) {
           type: "POST",
           contentType: "application/json" 
         }).fail(function() {
-          // TODO: if we fail with mongolab attach the json to #data
-          $("#data").val("json");
+          // if we fail with mongolab attach the json to #data
+          exp = Application.experiment;
+          $("#data").val(JSON.stringify(exp));
         }).always(function() {
           // submit the form anyway
           $("#mturk_form").submit();
@@ -321,11 +322,12 @@ TaskFSM.prototype = {
                 this.task.result.correct = false;
             }
             this.task.result.timeover = false;
+            this.task.result.stop = new Date;
         }
         // DED: push the json in the value of data
         //$("#data").val(JSON.stringify( Application.experiment ));
         //
-        Application.experiment.stop = new Date;
+        Application.experiment.stop = this.task.result.stop;
         Application.experiment.overallTime = Application.experiment.stop - Application.experiment.start;
         setTimeout(function () {that.callBack();}, 400);
         },
