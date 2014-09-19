@@ -45,7 +45,7 @@
 
             <script type="text/javascript" src='https://www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1"}]}'></script>
 
-            <script src="https://raw.github.com/afshinm/Json-to-HTML-Table/master/json-to-table.js"></script>
+            <script src="http://rawgit.com/afshinm/Json-to-HTML-Table/master/json-to-table.js"></script>
             <script>
             google.load('visualization', '1', {packages: ['table']});
             var load_selector = function() {
@@ -54,7 +54,7 @@
                     $.each(data, function(key, val) {
                         items.push('<option value="'+val+'">' + val + '</option>');
                     });
-    
+
                     $('<select/>', {'id': 'select-experiment', 'class': 'span2', 'onchange': 'load_results(this.value);', html: items.join('') }).appendTo('#selector');
                     load_results($('#select-experiment').val());
                 });
@@ -67,9 +67,9 @@
                     $.each(data, function(key, val) {
                         items.push('<tr> <td>' + key + '</td><td>' + val.name + '</td><td>'+(new Date(val.stop) - new Date(val.start))/1000.0+'</td><td>'+new Date(val.stop)+'</td><td>'+val.fullscreen+'</td></tr>');
                     });
-    
+
                     $('#overview-container').html($('<table/>', {'class': 'table table-condensed', html: items.join('') }));
-    
+
                     //Stochastics
                     
                     var gtable = {};
@@ -88,6 +88,7 @@
                         $.each(experiment.sets, function(key, set) {
                             $.each(set.tasks, function(key, task) {
                                 gtable.rows.push({c:[{v: experiment._id.$oid}, {v: set.name}, {v: task.type}, {v: task.amount}, {v: task.result.time}, {v: task.result.correct}, {v: task.similar}]});
+                                console.log(task)
                             });
                         });
                     });
