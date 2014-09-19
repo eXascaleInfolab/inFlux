@@ -87,7 +87,9 @@
                     $.each(data, function(key,experiment) {
                         $.each(experiment.sets, function(key, set) {
                             $.each(set.tasks, function(key, task) {
-                                gtable.rows.push({c:[{v: experiment._id.$oid}, {v: set.name}, {v: task.type}, {v: task.amount}, {v: task.result.time}, {v: task.result.correct}, {v: task.similar}]});
+                                if ( task.result ) {
+                                    gtable.rows.push({c:[{v: experiment._id.$oid}, {v: set.name}, {v: task.type}, {v: task.amount}, {v: task.result.time}, {v: task.result.correct}, {v: task.similar}]});
+                                }
                             });
                         });
                     });
@@ -122,7 +124,9 @@
                     $.each(data, function(key,experiment) {
                         $.each(experiment.sets, function(key, set) {
                             $.each(set.tasks, function(key, task) {
-                                datatable.push({'trial': experiment._id.$oid, 'set': set.name, 'type': task.type, 'amount': task.amount, 'similar': task.similar, 'time': task.result.time , 'correct': task.result.correct?1:0});
+                                if (task.result) {
+                                    datatable.push({'trial': experiment._id.$oid, 'set': set.name, 'type': task.type, 'amount': task.amount, 'similar': task.similar, 'time': task.result.time , 'correct': task.result.correct?1:0});
+                                }
                             });
                         });
                     });
