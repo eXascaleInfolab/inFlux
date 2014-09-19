@@ -96,7 +96,7 @@ Application = StateMachine.create({
                 "Press <a class=\"btn btn-inverse disabled\">space</a> if no duplicates are present.",
                 "For each correct answer, you will receive <a class=\"btn btn-warning disabled\">$0.01</a> bonus.",
                 "<hr>",
-                "<div class=\"alert alert-danger\"><h4 class=\"alert-heading\">Important notes to receive the bonus!</h4><ul><li>Rushing through WILL NOT be compensated</li><li>Please try to do as many tasks as possible.</li> <li>If you are tired before completing all the available tasks, click on the <a class=\"btn btn-inverse disabled\">Submit</a> button</li><li>Answer faithfully the final questionnaire.</li> <ul></div>",
+                "<div class=\"alert alert-danger\"><h4 class=\"alert-heading\">Important notes to receive the bonus!</h4><ul><li>Please try to do as many tasks as possible.</li> <li>If you are tired before completing all the available tasks, click on the <a class=\"btn btn-inverse disabled\">Submit</a> button</li><li>Answer faithfully the final questionnaire.</li> <li><small>Rushing through WILL NOT be compensated</small></li> <ul></div>",
                 ]
         })); },
 
