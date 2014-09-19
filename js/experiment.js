@@ -91,6 +91,7 @@ Application = StateMachine.create({
             paragraphs: [
                 "<h3>Instructions</h3>",
                 "We will show you a set of icons, and your task is to detect if there are duplicates among them.",
+                "!!!YOU ONLY HAVE <a class=\"btn btn-danger disabled\">5 SECONDS</a> FOR EACH TASK BEFORE IT EXPIRES!!!",
                 "Press <a class=\"btn btn-inverse disabled\">J</a> if you find a duplicate.",
                 "Press <a class=\"btn btn-inverse disabled\">space</a> if no duplicates are present.",
                 "For each correct answer, you will receive <a class=\"btn btn-warning disabled\">$0.01</a> bonus.",
