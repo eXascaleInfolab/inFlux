@@ -100,6 +100,9 @@
                         gdatatable, [2],[{'column': 4, 'aggregation': function(val) {return Math.floor(google.visualization.data.avg(val));}, 'type': 'number', 'label': 'avg Time [ms]'}, {'column': 5, 'aggregation': function (val) {return Math.floor(google.visualization.data.avg(val)*1000)/10.0;}, 'type': 'number', 'label': '% Correct',}]);
                     var groupedbysimilar = google.visualization.data.group(
                         gdatatable, [6],[{'column': 4, 'aggregation': function(val) {return Math.floor(google.visualization.data.avg(val));}, 'type': 'number', 'label': 'avg Time [ms]'}, {'column': 5, 'aggregation': function (val) {return Math.floor(google.visualization.data.avg(val)*1000)/10.0;}, 'type': 'number', 'label': '% Correct',}, {'column': 6, 'aggregation': google.visualization.data.count, 'type': 'number', 'label': 'Count',}]);
+
+                     var groupedbycorrectness = google.visualization.data.group(
+                        gdatatable, [5],[{'column': 4, 'aggregation': function(val) {return Math.floor(google.visualization.data.avg(val));}, 'type': 'number', 'label': 'avg Time [ms]'}, {'column': 6, 'aggregation': google.visualization.data.count, 'type': 'number', 'label': 'Count',}]);
                         
                     var formatter = new google.visualization.BarFormat({width: 120});
 //                    formatter.format(groupedbytypeamount, 2);
@@ -115,6 +118,8 @@
                     vis.draw(groupedbytypeamount,{allowHtml: true, cssClassNames: {table: 'table', headerRow: 'th', } });
                     vis = new google.visualization.Table($('<div/>').appendTo('#stochastics-container').get(0));
                     vis.draw(groupedbysimilar,{allowHtml: true, cssClassNames: {table: 'table', headerRow: 'th', } });
+                    vis = new google.visualization.Table($('<div/>').appendTo('#stochastics-container').get(0));
+                    vis.draw(groupedbycorrectness,{allowHtml: true, cssClassNames: {table: 'table', headerRow: 'th', } });
                     $('.google-visualization-table-table').removeClass();
 
 
