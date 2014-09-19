@@ -91,7 +91,7 @@ Application = StateMachine.create({
             paragraphs: [
                 "<h3>Instructions</h3>",
                 "We will show you a set of icons, and your task is to detect if there are duplicates among them.",
-                "YOU ONLY HAVE <a class=\"btn btn-danger disabled\">2 SECONDS</a> FOR EACH TASK BEFORE IT EXPIRES",
+                "YOU ONLY HAVE <a class=\"btn btn-danger disabled\">1 SECONDS</a> FOR EACH TASK BEFORE IT EXPIRES",
                 "Press <a class=\"btn btn-inverse disabled\">J</a> if you find a duplicate.",
                 "Press <a class=\"btn btn-inverse disabled\">space</a> if no duplicates are present.",
                 "For each correct answer, you will receive <a class=\"btn btn-warning disabled\">$0.01</a> bonus.",
@@ -355,11 +355,11 @@ var task = {
 };
 
 Application.load({
-    name: "exp3_GravMonsterid_200_pause_timer2sec",
+    name: "exp3_GravMonsterid_200_pause_timer1sec",
     fullscreen: true,
     workerId: 0,
     assignmentId: 0,
-    time: '2',
+    time: '1',
     sets: [
       {
         name: "set_validation",
