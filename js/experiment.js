@@ -354,7 +354,7 @@ var task = {
 };
 
 Application.load({
-    name: "exp2_Minimal_200_pause_timer5sec",
+    name: "exp2_Minimal_200_pause_timer10sec",
     fullscreen: true,
     workerId: 0,
     assignmentId: 0,
