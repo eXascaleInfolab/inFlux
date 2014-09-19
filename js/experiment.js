@@ -316,7 +316,8 @@ TaskFSM.prototype = {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkgreen;">Correct, '+this.task.result.time+' ms</p>')); 
                 this.task.result.correct = true;
                 totalCorrect++;
-                actuator.updateScore(totalCorrect*taskPrice)
+                var bo = Number((totalCorrect*taskPrice).toFixed(2));
+                actuator.updateScore(bo);
                 $("#totalCorrect").val(totalCorrect);
 
             } else {
