@@ -63,9 +63,9 @@
                 $.getJSON("https://api.mongolab.com/api/1/databases/influx/collections/"+table+"?apiKey=FzmG9iesxbf045DUjY1tfo65U7584rWO", function(data) {
                     //Overview
                     var items = [];
-                    items.push('<tr> <th>ID</th><th>Name</th><th>Time</th><th>Endtime</th><th>Fullscreen</th></tr>');
+                    items.push('<tr> <th>ID</th><th>Name</th><th>Time</th><th>Endtime</th><th>AssignementID</th></tr>');
                     $.each(data, function(key, val) {
-                        items.push('<tr> <td>' + key + '</td><td>' + val.name + '</td><td>'+(new Date(val.stop) - new Date(val.start))/1000.0+'</td><td>'+new Date(val.stop)+'</td><td>'+val.fullscreen+'</td></tr>');
+                        items.push('<tr> <td>' + key + '</td><td>' + val.name + '</td><td>'+(new Date(val.stop) - new Date(val.start))/1000.0+'</td><td>'+new Date(val.stop)+'</td><td>'+val.assignmentId+'</td></tr>');
                     });
 
                     $('#overview-container').html($('<table/>', {'class': 'table table-condensed', html: items.join('') }));
@@ -88,7 +88,6 @@
                         $.each(experiment.sets, function(key, set) {
                             $.each(set.tasks, function(key, task) {
                                 gtable.rows.push({c:[{v: experiment._id.$oid}, {v: set.name}, {v: task.type}, {v: task.amount}, {v: task.result.time}, {v: task.result.correct}, {v: task.similar}]});
-                                console.log(task)
                             });
                         });
                     });

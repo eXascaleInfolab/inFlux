@@ -151,8 +151,6 @@ Application = StateMachine.create({
             $('#submitButton').attr('disabled', true);
             $('#submitButton').hide();
             that = this;
-            this.experiment.stop = new Date;
-            this.experiment.overallTime = this.experiment.stop - this.experiment.start;
         }, 
     }
 });
@@ -327,6 +325,9 @@ TaskFSM.prototype = {
         }
         // DED: push the json in the value of data
         //$("#data").val(JSON.stringify( Application.experiment ));
+        //
+        Application.experiment.stop = new Date;
+        Application.experiment.overallTime = Application.experiment.stop - Application.experiment.start;
         setTimeout(function () {that.callBack();}, 400);
         },
 }
