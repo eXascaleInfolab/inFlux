@@ -207,7 +207,7 @@ TaskFSM.prototype = {
             }
         });
         $('#container-main').html(Template.trialmessage("If you are ready, press <a class=\"btn btn-inverse disabled\">space</a> for the next task."));
-        $("#timer").text("--:--:-");
+        $("#timer").text("00:00:0");
     },
 
     onleaveready: function () {
