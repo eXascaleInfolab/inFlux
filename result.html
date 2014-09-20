@@ -63,9 +63,9 @@
                 $.getJSON("https://api.mongolab.com/api/1/databases/influx/collections/"+table+"?apiKey=FzmG9iesxbf045DUjY1tfo65U7584rWO", function(data) {
                     //Overview
                     var items = [];
-                    items.push('<tr> <th>ID</th><th>Name</th><th>Time</th><th>Endtime</th><th>AssignementID</th></tr>');
+                    items.push('<tr> <th>ID</th><th>Name</th><th>Time</th><th>Endtime</th><th>WorkerID</th></tr>');
                     $.each(data, function(key, val) {
-                        items.push('<tr> <td>' + key + '</td><td>' + val.name + '</td><td>'+(new Date(val.stop) - new Date(val.start))/1000.0+'</td><td>'+new Date(val.stop)+'</td><td>'+val.assignmentId+'</td></tr>');
+                        items.push('<tr> <td>' + key + '</td><td>' + val.name + '</td><td>'+(new Date(val.stop) - new Date(val.start))/1000.0+'</td><td>'+new Date(val.stop)+'</td><td>'+val.workerId+'</td></tr>');
                     });
 
                     $('#overview-container').html($('<table/>', {'class': 'table table-condensed', html: items.join('') }));
@@ -80,7 +80,8 @@
                                  {id: 'D', label: 'Amount', type: 'number'},
                                  {id: 'E', label: 'Time', type: 'number'},
                                  {id: 'F', label: 'Correct', type: 'boolean'},
-                                 {id: 'G', label: 'Similar', type: 'boolean'}
+                                 {id: 'G', label: 'Similar', type: 'boolean'},
+                                 {id: 'H', label: 'Worker', type: 'string'}
                                 ],
                           rows: [],
                     }    
@@ -88,7 +89,7 @@
                         $.each(experiment.sets, function(key, set) {
                             $.each(set.tasks, function(key, task) {
                                 if ( task.result ) {
-                                    gtable.rows.push({c:[{v: experiment._id.$oid}, {v: set.name}, {v: task.type}, {v: task.amount}, {v: task.result.time}, {v: task.result.correct}, {v: task.similar}]});
+                                    gtable.rows.push({c:[{v: experiment._id.$oid}, {v: set.name}, {v: task.type}, {v: task.amount}, {v: task.result.time}, {v: task.result.correct}, {v: task.similar}, {v: experiment.workerId}]});
                                 }
                             });
                         });
@@ -103,7 +104,11 @@
 
                      var groupedbycorrectness = google.visualization.data.group(
                         gdatatable, [5],[{'column': 4, 'aggregation': function(val) {return Math.floor(google.visualization.data.avg(val));}, 'type': 'number', 'label': 'avg Time [ms]'}, {'column': 6, 'aggregation': google.visualization.data.count, 'type': 'number', 'label': 'Count',}]);
-                        
+
+                    var groupedbyworker = google.visualization.data.group(
+                        gdatatable, [7],[{'column': 4, 'aggregation': function(val) {return Math.floor(google.visualization.data.avg(val));}, 'type': 'number', 'label': 'avg Time [ms]'}, {'column': 5, 'aggregation': function (val) {return Math.floor(google.visualization.data.avg(val)*1000)/10.0;}, 'type': 'number', 'label': '% Correct',},  {'column': 6, 'aggregation': google.visualization.data.count, 'type': 'number', 'label': 'Count',}]);
+ 
+
                     var formatter = new google.visualization.BarFormat({width: 120});
 //                    formatter.format(groupedbytypeamount, 2);
 //                    formatter.format(groupedbytypeamount, 3); 
@@ -120,6 +125,9 @@
                     vis.draw(groupedbysimilar,{allowHtml: true, cssClassNames: {table: 'table', headerRow: 'th', } });
                     vis = new google.visualization.Table($('<div/>').appendTo('#stochastics-container').get(0));
                     vis.draw(groupedbycorrectness,{allowHtml: true, cssClassNames: {table: 'table', headerRow: 'th', } });
+                    vis = new google.visualization.Table($('<div/>').appendTo('#stochastics-container').get(0));
+                    vis.draw(groupedbyworker,{allowHtml: true, cssClassNames: {table: 'table', headerRow: 'th', } });
+
                     $('.google-visualization-table-table').removeClass();
 
 
