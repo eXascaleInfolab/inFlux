@@ -91,11 +91,12 @@ Application = StateMachine.create({
             paragraphs: [
                 "<h3>Instructions</h3>",
                 "We will show you a set of icons, and your task is to detect if there are duplicates among them.",
+                "YOU will have <a class=\"btn btn-danger disabled\">10 SECONDS</a> for each task before it expires.",
                 "Press <a class=\"btn btn-inverse disabled\">J</a> if you find a duplicate.",
                 "Press <a class=\"btn btn-inverse disabled\">space</a> if no duplicates are present.",
                 "For each correct answer, you will receive <a class=\"btn btn-warning disabled\">$0.01</a> bonus.",
                 "<hr>",
-                "<div class=\"alert alert-danger\"><h4 class=\"alert-heading\">Important notes to receive the bonus!</h4><ul><li>Please try to do as many tasks as possible.</li> <li>If you are tired before completing all the available tasks, click on the <a class=\"btn btn-inverse disabled\">Submit</a> button</li><li>Answer faithfully the final questionnaire.</li> <ul></div>",
+                "<div class=\"alert alert-danger\"><h4 class=\"alert-heading\">Important notes to receive the bonus!</h4><ul><li>Please try to do as many tasks as possible.</li> <li>If you are tired before completing all the available tasks, click on the <a class=\"btn btn-inverse disabled\">Submit</a> button</li><li>Answer faithfully the final questionnaire.</li> <li><small>Rushing through WILL NOT be compensated</small></li> <ul></div>",
                 ]
         })); },
 
@@ -207,6 +208,7 @@ TaskFSM.prototype = {
             }
         });
         $('#container-main').html(Template.trialmessage("If you are ready, press <a class=\"btn btn-inverse disabled\">space</a> for the next task."));
+        $("#timer").text("00:00:0");
     },
 
     onleaveready: function () {
@@ -314,7 +316,8 @@ TaskFSM.prototype = {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkgreen;">Correct, '+this.task.result.time+' ms</p>')); 
                 this.task.result.correct = true;
                 totalCorrect++;
-                actuator.updateScore(totalCorrect*taskPrice)
+                var bo = Number((totalCorrect*taskPrice).toFixed(2));
+                actuator.updateScore(bo);
                 $("#totalCorrect").val(totalCorrect);
 
             } else {
@@ -352,10 +355,11 @@ var task = {
 };
 
 Application.load({
-    name: "exp1_Minimal_200_pause_notimer",
+    name: "exp9_GravMonsterid_200_pause_timer10sec",
     fullscreen: true,
     workerId: 0,
     assignmentId: 0,
+    time: '10',
     sets: [
       {
         name: "set_validation",

@@ -115,6 +115,33 @@ audio:not([controls]) { display: none; }
 .fullscreen-container:after {
   content: "full"; }
 
+.timer-container {
+  position: relative;
+  display: inline-block;
+  background: #E73A3A;
+  padding: 15px 25px;
+  font-size: 25px;
+  height: 25px;
+  line-height: 47px;
+  font-weight: bold;
+  border-radius: 3px;
+  color: white;
+  margin-top: 8px;
+  text-align: center; }
+  .timer-container:after{
+    position: absolute;
+    width: 100%;
+    top: 10px;
+    left: 0;
+    text-transform: uppercase;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: center;
+    color: #eee4da; }
+
+.timer-container:after {
+  content: "Timer"; }
+
 .submit-container, .fullscreen-container {
   position: relative;
   display: inline-block;
