@@ -30,8 +30,8 @@ Identicon = function (canvas, hash, type) {
 
 Identicon.prototype = {
     MIN_SIZE: 16, // minimal size the canvas will let create it-self
-    DEFAULT_SIZE: 32, // minimal size the canvas will let create it-self
-    PIXEL: 32, // amount of theoretical pixel on one side
+    DEFAULT_SIZE: 128, // minimal size the canvas will let create it-self
+    PIXEL: 128, // amount of theoretical pixel on one side
     METHOD_MARKER: "drawIdent",
     type: "Default",
 
