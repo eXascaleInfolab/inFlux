@@ -39,8 +39,6 @@
     <div class="row">
         <div class="span12"><h1>JavaScript enabled?</h1></div>
     </div>
-    <div id="identifiers" class="row" style="display: inline-block;">
-    </div>
 </div>
 
   <script id="div-block-ident" type="text/x-handlebars-template">
@@ -66,7 +64,14 @@
 
   <script id="trial-message" type="text/x-handlebars-template">
     <div class="row">
-        <div class="span10 well" style="padding: 0px; height: 300px; display:table; text-align:center;">
+        <div class="span1 well" style="padding: 0px; height: 150px; display:table; text-align:center;">
+             <div id="identifiers-preload-main" class="row" style="display: inline-block;">
+              <span>
+                  <canvas class="identicon" data-content="" identicon-type="GravMonsterid" width="128" height="128" id="identicon10"></canvas>
+              </span>
+            </div>
+        </div>
+        <div class="span8 well" style="padding: 0px; height: 300px; display:table; text-align:center;">
              <div style="display: table-cell; vertical-align: middle;">{{{this}}}</div>
         </div>
     </div>
