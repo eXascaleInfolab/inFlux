@@ -48,9 +48,11 @@ var actuator = new HTMLActuator();
 
 var Difficulty =  {};
 
-Difficulty.fun1 = function (experiment, args) {
-    console.log(experiment);
+Difficulty.fun1 = function () {
+    var currentSet = Application.experiment.sets[Application.pointer-1];
     
+    // look at this variable to change the amount
+    console.log(currentSet.tasks);
     return 10;
 }
 
@@ -272,10 +274,11 @@ TaskFSM.prototype = {
         // prepare the test by deciding if similar figure is shown and if at which places
         var a,b;
         var amount = 0;
+        // use function or number
         if (typeof this.task.ammount === 'number') {
             amount = this.task.amount;
         } else if (typeof this.task.amount === 'string') {
-            amount = Difficulty[this.task.amount](Application.experiment);
+            amount = Difficulty[this.task.amount]();
         } else {
             console.log("amount neither number nor function name");
         }
@@ -385,6 +388,18 @@ Application.load({
       {
         name: "set_validation",
         tasks: [
+        {
+            type: 'GravMonsterid',
+            amount: 'fun1',
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 'fun1',
+        },
+        {
+            type: 'GravMonsterid',
+            amount: 'fun1',
+        },
         {
             type: 'GravMonsterid',
             amount: 'fun1',
