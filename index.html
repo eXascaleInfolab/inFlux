@@ -37,7 +37,6 @@
 
 <div id="container-main" class="container">
     <div class="row">
-        <div class="span12"><h1>JavaScript enabled?</h1></div>
     </div>
 </div>
 
@@ -64,14 +63,23 @@
 
   <script id="trial-message" type="text/x-handlebars-template">
     <div class="row">
-        <div class="span10 well" style="padding: 0px; height: 300px; display:table; text-align:center;">
-             <div style="display: table-cell; vertical-align: middle;">{{{this}}}</div>
+        <div class="span12" style="padding: 0px; height: 300px; display:table; text-align:center;">
+              <div id="opt" style="padding-top:100px"> 
+                Select Difficulty (Optional)
+                <select id="diff">
+                  <option value="7"> 6 (1 cent/HIT)</option>
+                  <option value="13">12 (3 cents/HIT)</option>
+                  <option value="19">18 (4 cents/HIT)</option>
+                  <option value="25">24 (5 cents/HIT)</option>
+                </select>
+             </div>
+             <div style="padding-top:40px">{{{this}}}</div>
         </div>
     </div>
-    <div class="row">
-        <div class="span6 offset2 text-center">
-          <span class="pull-left">Press <a class="btn btn-inverse disabled">F</a> if all unique </span>
-          <span class="pull-right">Press <a class="btn btn-inverse disabled">J</a> if there is a duplicate</span>
+    <div class="row" id="fj">
+        <div class="span6 offset4 text-center">
+          <span class="pull-left">Press <a class="btn btn-inverse disabled">F</a> if there is NO match </span>
+          <span class="pull-right">Press <a class="btn btn-inverse disabled">J</a> if there is a match</span>
         </div>
     </div>
   </script>
@@ -267,7 +275,7 @@
 </form>
 </div>
 
-<div id="container-preload" class="container" style="visibility: hidden;">
+<div id="container-preload" class="container" style="display: none;">
 </div>
 
   <!-- JavaScript at the bottom for fast page loading: http://developer.yahoo.com/performance/rules.html#js_bottom -->

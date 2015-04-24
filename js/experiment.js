@@ -53,7 +53,9 @@ Difficulty.fun1 = function () {
     
     // look at this variable to change the amount
     console.log(currentSet.tasks);
-    return 10;
+    vdiff = $("#diff").val();
+    Application.experiment.difficulty = vdiff;
+    return vdiff;
 }
 
 var Application =  {};
@@ -99,14 +101,13 @@ Application = StateMachine.create({
     onwelcome: function() { $('#container-main').html(Template.message(
           { title: "", 
             paragraphs: [
-                "<h3>Instructions</h3>",
-                "We will show you a set of icons, and your task is to detect if there are duplicates among them.",
-                "YOU will have <a class=\"btn btn-danger disabled\">10 SECONDS</a> for each task before it expires.",
-                "Press <a class=\"btn btn-inverse disabled\">J</a> if you find a duplicate.",
-                "Press <a class=\"btn btn-inverse disabled\">F</a> if no duplicates are present.",
-                "For each correct answer, you will receive <a class=\"btn btn-warning disabled\">$0.01</a> bonus.",
-                "<hr>",
-                "<div class=\"alert alert-danger\"><h4 class=\"alert-heading\">Important notes to receive the bonus!</h4><ul><li>Please try to do as many tasks as possible.</li> <li>If you are tired before completing all the available tasks, click on the <a class=\"btn btn-inverse disabled\">Submit</a> button</li><li>Answer faithfully the final questionnaire.</li> <li><small>Rushing through WILL NOT be compensated</small></li> <ul></div>",
+                "<h3>Instructions To read before accepting</h3>",
+                "We will show you 1 image on the left, and your task is to detect if there is a duplicate among the set on the right.",
+                "Press <a class=\"btn btn-inverse disabled\">J</a> if you find a match.",
+                "Press <a class=\"btn btn-inverse disabled\">F</a> if there are NO matches.",
+                "If you wish, you can change the difficulty after each task.",
+                "A corresponding bonus will be granted if the answer is correct.",
+                "You can stop at any moment by clicking submit and filling the survey.",
                 ]
         })); },
 
@@ -129,7 +130,7 @@ Application = StateMachine.create({
             dispatch : function () {
                 var lefttasks = this.set.tasks.filter(function (el){return (el.result == undefined);});
                 if (lefttasks.length > 0) {
-                    var tasktodo = lefttasks[Math.floor(Math.random()*lefttasks.length)];
+                    var tasktodo = lefttasks[0];
                     var fsm = StateMachine.create(task);
                     fsm.load(tasktodo, this.time);
                     var thattaskset = this;
@@ -217,10 +218,9 @@ TaskFSM.prototype = {
                 that.set();
             }
         });
-        $('#container-main').html(Template.trialmessage("If you are ready, press <a class=\"btn btn-inverse disabled\">Any Key</a>."));
-
-
-
+        $('#container-main').html(Template.trialmessage("If you are ready, press <a class=\"btn btn-success disabled\">Any Key</a>"));
+        $('#opt').show();
+        $('#fj').hide();
     },
 
     onbridge: function() {
@@ -294,7 +294,7 @@ TaskFSM.prototype = {
         }
 
         // preload in hidden container the content 
-        $('#container-preload').html(Template.trialmessage('<div id="identifiers-preload" class="row" style="display: inline-block;"><div class="span1" id="left-preload"></div><div class="span5" id="right-preload"></div></div>'));
+        $('#container-preload').html(Template.trialmessage('<div id="identifiers-preload" class="row" style="display: inline-block;"><div class="span1" style="" id="left-preload"></div><div class="span7 offset1" id="right-preload"></div></div>'));
         $('#left-preload').append(Template.identicon({ data: similarData, type: this.task.type}));
         for (var i = 1; i < amount; i++) {
             var data = "";
@@ -308,21 +308,27 @@ TaskFSM.prototype = {
         // container gets loaded with counting
         $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkred;"></p>')); 
         var cross = $('#cross');
-        setTimeout(function () {cross.html('+'); setTimeout(function () {that.start();},1000);});
+        //setTimeout(function () {cross.html('Loading Next Task ...'); setTimeout(function () {that.start();},1000);});
+        $("#diff").val(Application.experiment.difficulty);
+        that.start();
         
     },
 
     oncontent: function() {
         $('#container-main').html(Template.trialmessage('<div id="identifiers" class="row" style="display: inline-block;" ></div>'));
         $('#identifiers').replaceWith($('#identifiers-preload'));
+        $('#opt').hide();
+        $('#fj').show();
         this.timeStart = new Date().getTime();
     },
 
     onleavecontent: function() {
         $(document).unbind('keypress');
+        $('#fj').hide();
     },
         
     onend: function(event, from, to, msg) {
+        $('#fj').hide();
         var that = this;
         this.task.result = {}
         this.task.result.time = new Date().getTime() - this.timeStart;
@@ -384,26 +390,28 @@ Application.load({
     fullscreen: true,
     workerId: 0,
     assignmentId: 0,
+    difficulty: 7,
     sets: [
       {
         name: "set_validation",
         tasks: [
         {
-            type: 'GravMonsterid',
+
+            type: 'FigureMoji',
             amount: 'fun1',
         },
         {
-            type: 'GravMonsterid',
+            type: 'FigureMoji',
             amount: 'fun1',
         },
         {
-            type: 'GravMonsterid',
+            type: 'FigureMoji',
             amount: 'fun1',
         },
         {
-            type: 'GravMonsterid',
+            type: 'FigureMoji',
             amount: 'fun1',
-        }
+        },
      ]},  
     ],
 });

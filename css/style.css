@@ -20,7 +20,7 @@ audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
 audio:not([controls]) { display: none; }
 [hidden] { display: none; }
 
-@media (min-width: 1200px) {
+@media (min-width: 1200px, max-height: 900) {
     .container{
         max-width: 970px;
     }
@@ -188,7 +188,10 @@ html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10
 html, button, input, select, textarea { font-family: sans-serif; color: #222; }
 
 body { margin: 0; font-size: 1em; line-height: 1.4; }
-
+body, html { 
+    overflow-x: hidden; 
+    overflow-y: auto;
+}
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection declarations have to be separate.
