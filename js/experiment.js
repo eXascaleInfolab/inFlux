@@ -219,8 +219,9 @@ TaskFSM.prototype = {
             }
         });
         $('#container-main').html(Template.trialmessage("If you are ready, press <a class=\"btn btn-success disabled\">Any Key</a>"));
-        $('#opt').show();
+        $("#diff").val(Application.experiment.difficulty);
         $('#fj').hide();
+        $('#opt').show();
     },
 
     onbridge: function() {
@@ -275,13 +276,14 @@ TaskFSM.prototype = {
         var a,b;
         var amount = 0;
         // use function or number
-        if (typeof this.task.ammount === 'number') {
+        if (typeof this.task.amount === 'number') {
             amount = this.task.amount;
         } else if (typeof this.task.amount === 'string') {
             amount = Difficulty[this.task.amount]();
         } else {
             console.log("amount neither number nor function name");
         }
+        this.task.difficulty = amount;
 
         if (this.task.similar == undefined) {this.task.similar = (Math.round(Math.random()) == 1);}
         if (this.task.similar) {
@@ -294,7 +296,7 @@ TaskFSM.prototype = {
         }
 
         // preload in hidden container the content 
-        $('#container-preload').html(Template.trialmessage('<div id="identifiers-preload" class="row" style="display: inline-block;"><div class="span1" style="" id="left-preload"></div><div class="span7 offset1" id="right-preload"></div></div>'));
+        $('#container-preload').html(Template.trialmessage('<div id="identifiers-preload" class="row" style="display: inline-block;"><div class="span1" style="" id="left-preload"></div><div class="span4" id="right-preload"></div></div>'));
         $('#left-preload').append(Template.identicon({ data: similarData, type: this.task.type}));
         for (var i = 1; i < amount; i++) {
             var data = "";
@@ -307,11 +309,9 @@ TaskFSM.prototype = {
 
         // container gets loaded with counting
         $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkred;"></p>')); 
-        var cross = $('#cross');
+        //var cross = $('#cross');
         //setTimeout(function () {cross.html('Loading Next Task ...'); setTimeout(function () {that.start();},1000);});
-        $("#diff").val(Application.experiment.difficulty);
         that.start();
-        
     },
 
     oncontent: function() {
@@ -347,8 +347,10 @@ TaskFSM.prototype = {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkgreen;">Correct, '+this.task.result.time+' ms</p>')); 
                 this.task.result.correct = true;
                 totalCorrect++;
-                var bo = Number((totalCorrect*taskPrice).toFixed(2));
+                totalBonus = totalBonus + ((this.task.difficulty-1)/6 * taskPrice);
+                var bo = Number((totalBonus).toFixed(2));
                 actuator.updateScore(bo);
+                console.log(bo);
                 $("#totalCorrect").val(totalCorrect);
 
             } else {
@@ -357,6 +359,8 @@ TaskFSM.prototype = {
             }
             this.task.result.timeover = false;
             this.task.result.stop = new Date;
+            $('#fj').hide();
+            $("#diff").val(Application.experiment.difficulty);
         }
         // DED: push the json in the value of data
         //$("#data").val(JSON.stringify( Application.experiment ));
@@ -369,6 +373,7 @@ TaskFSM.prototype = {
 
 var totalTasks = 200;
 var totalCorrect = 0;
+var totalBonus = 0;
 var totalDone = 0;
 var taskPrice = 0.01;
 
@@ -386,7 +391,7 @@ var task = {
 };
 
 Application.load({
-    name: "exp9_GravMonsterid_200_pause_timer10sec",
+    name: "FigureMoji_SelfRegulation",
     fullscreen: true,
     workerId: 0,
     assignmentId: 0,
@@ -396,22 +401,805 @@ Application.load({
         name: "set_validation",
         tasks: [
         {
-
-            type: 'FigureMoji',
-            amount: 'fun1',
+        type: 'FigureMoji',
+        amount: 'fun1',
         },
         {
-            type: 'FigureMoji',
-            amount: 'fun1',
+        type: 'FigureMoji',
+        amount: 'fun1',
         },
         {
-            type: 'FigureMoji',
-            amount: 'fun1',
+        type: 'FigureMoji',
+        amount: 'fun1',
         },
         {
-            type: 'FigureMoji',
-            amount: 'fun1',
+        type: 'FigureMoji',
+        amount: 'fun1',
         },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        }
      ]},  
     ],
 });

@@ -63,8 +63,7 @@ audio:not([controls]) { display: none; }
     top: -50px;
     opacity: 0; } }
 .scores-container {
-  float: right;
-  text-align: right; 
+  text-align: center; 
   padding: 5px; }
 
 .score-container, .count-container {
