@@ -115,7 +115,7 @@ Application = StateMachine.create({
                 if (lefttasks.length > 0) {
                     var tasktodo = lefttasks[0];
                     var fsm = StateMachine.create(task);
-                    fsm.load(tasktodo, tasktodo.time);
+                    fsm.load(tasktodo, this.time);
                     var thattaskset = this;
                     fsm.callBack = function () {thattaskset.dispatch()};
                 } else {
@@ -194,7 +194,8 @@ TaskFSM.prototype = {
 
     onload: function (event, from, to, msg, time) {
         this.task = msg;
-        this.time = time;
+        this.time = this.task.time || time;
+        //console.log(this.task);
     },
 
     onready: function() {
