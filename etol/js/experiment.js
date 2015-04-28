@@ -191,6 +191,10 @@ Application.leaveFullscreen = function () {
     }
 };
 
+window.onbeforeunload = function() {
+  return "Data will be lost if you leave the page, are you sure?";
+};
+
 TaskFSM = function () {
     this.load();
 }
@@ -210,7 +214,7 @@ TaskFSM.prototype = {
                 that.set();
             }
         });
-        $('#container-main').html(Template.trialmessage("If you are ready, press <a class=\"btn btn-success disabled\">Any Key</a>"));
+        $('#container-main').html(Template.trialmessage("When ready, press Any Key"));
         $("#diff").val(Application.experiment.difficulty);
         $('#fj').hide();
         $('#opt').show();
