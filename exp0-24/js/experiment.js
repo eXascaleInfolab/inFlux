@@ -114,6 +114,7 @@ Application = StateMachine.create({
                 var lefttasks = this.set.tasks.filter(function (el){return (el.result == undefined);});
                 if (lefttasks.length > 0) {
                     var tasktodo = lefttasks[0];
+                    currentTime = tasktodo.time;
                     var fsm = StateMachine.create(task);
                     fsm.load(tasktodo, this.time);
                     var thattaskset = this;
@@ -142,6 +143,7 @@ Application = StateMachine.create({
 
     ondebriefing: function() {
             $("#container-main").hide();
+            $("#status").hide();
             $("#survey").show();
             $("#survey-close").hide();
             $('#submitButton').attr('disabled', true);
@@ -207,7 +209,7 @@ TaskFSM.prototype = {
                 that.set();
             }
         });
-        $('#container-main').html(Template.trialmessage("When ready, press Any Key"));
+        $('#container-main').html(Template.trialmessage("<h3>Next Timer: " + currentTime + " Seconds</h3> When ready, press Any Key"));
         $("#diff").val(Application.experiment.difficulty);
         $('#fj').hide();
         $('#opt').show();
@@ -365,6 +367,7 @@ var totalCorrect = 0;
 var totalBonus = 0;
 var totalDone = 0;
 var taskPrice = 0.01;
+var currentTime = 20;
 
 var task = {
   target: TaskFSM.prototype,
@@ -380,7 +383,7 @@ var task = {
 };
 
 Application.load({
-    name: "EXP0-6-10",
+    name: "EXP0-24",
     fullscreen: true,
     workerId: 0,
     assignmentId: 0,

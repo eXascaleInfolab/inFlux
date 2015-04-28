@@ -366,7 +366,7 @@ var totalCorrect = 0;
 var totalBonus = 0;
 var totalDone = 0;
 var taskPrice = 0.01;
-var currentTime = 10;
+var currentTime = 30;
 
 var task = {
   target: TaskFSM.prototype,
