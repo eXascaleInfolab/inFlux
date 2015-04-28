@@ -1,0 +1,260 @@
+{
+    "_id": {
+        "$oid": "553f7ef0e4b008327ecece39"
+    },
+    "name": "EXP0-6",
+    "fullscreen": true,
+    "workerId": "yuoi",
+    "assignmentId": 0,
+    "difficulty": 7,
+    "sets": [
+        {
+            "name": "set_validation",
+            "tasks": [
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": false,
+                    "result": {
+                        "time": 7824,
+                        "correct": true,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:08.656Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": true,
+                    "result": {
+                        "time": 1698,
+                        "correct": true,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:11.711Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": true,
+                    "result": {
+                        "time": 1505,
+                        "correct": true,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:14.270Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": true,
+                    "result": {
+                        "time": 1202,
+                        "correct": true,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:16.143Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": true,
+                    "result": {
+                        "time": 1744,
+                        "correct": false,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:18.375Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": true,
+                    "result": {
+                        "time": 1274,
+                        "correct": true,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:20.919Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": false,
+                    "result": {
+                        "time": 2898,
+                        "correct": true,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:24.896Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": false,
+                    "result": {
+                        "time": 2674,
+                        "correct": true,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:28.464Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": false,
+                    "result": {
+                        "time": 1060,
+                        "correct": true,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:30.304Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": false,
+                    "result": {
+                        "time": 978,
+                        "correct": true,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:32.041Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": true,
+                    "result": {
+                        "time": 1089,
+                        "correct": true,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:33.905Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": true,
+                    "result": {
+                        "time": 2057,
+                        "correct": true,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:36.729Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": false,
+                    "result": {
+                        "time": 1273,
+                        "correct": true,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:38.818Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": false,
+                    "result": {
+                        "time": 1066,
+                        "correct": true,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:40.746Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": false,
+                    "result": {
+                        "time": 2306,
+                        "correct": true,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:43.803Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": false,
+                    "result": {
+                        "time": 855,
+                        "correct": true,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:45.370Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": true,
+                    "result": {
+                        "time": 1234,
+                        "correct": false,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:47.283Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": false,
+                    "result": {
+                        "time": 1635,
+                        "correct": true,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:49.723Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": false,
+                    "result": {
+                        "time": 1348,
+                        "correct": true,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:51.740Z"
+                    }
+                },
+                {
+                    "type": "FigureMoji",
+                    "amount": "fun1",
+                    "difficulty": 7,
+                    "similar": true,
+                    "result": {
+                        "time": 1349,
+                        "correct": true,
+                        "timeover": false,
+                        "stop": "2015-04-28T12:36:53.780Z"
+                    }
+                }
+            ]
+        }
+    ],
+    "start": "2015-04-28T12:35:55.302Z",
+    "stop": "2015-04-28T12:36:53.780Z",
+    "overallTime": 58478
+}

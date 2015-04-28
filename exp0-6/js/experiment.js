@@ -233,8 +233,7 @@ TaskFSM.prototype = {
         function countDown(){
            n--;
            if(n == 0){
-              $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkred;"></p>')); 
-             // that.stop('timeout'); 
+              that.stop('timeout'); 
               clearInterval(that.tm);
            }
            $("#timer").text(msToTime(n*100));
