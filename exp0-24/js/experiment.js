@@ -411,22 +411,17 @@ Application.load({
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '8',
+        time: '6',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '8',
+        time: '6',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '8',
-        },
-        {
-        type: 'FigureMoji',
-        amount: 'fun1',
-        time: '3',
+        time: '6',
         },
         {
         type: 'FigureMoji',
@@ -441,17 +436,22 @@ Application.load({
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '5',
+        time: '3',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '5',
+        time: '4',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '5',
+        time: '4',
+        },
+        {
+        type: 'FigureMoji',
+        amount: 'fun1',
+        time: '4',
         },
         {
         type: 'FigureMoji',
@@ -486,32 +486,32 @@ Application.load({
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '15',
+        time: '12',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '15',
+        time: '12',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '15',
+        time: '12',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '11',
+        time: '9',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '11',
+        time: '9',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '11',
+        time: '9',
         },
      ]},  
     ],
