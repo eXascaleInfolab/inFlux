@@ -32,7 +32,18 @@ $('#survey-submit').click(function(e) {
           $("#data").val(JSON.stringify(exp));
         }).always(function() {
           // submit the form anyway
-          $("#mturk_form").submit();
+            $("#container-main").show();
+            $("#survey").hide();
+            $("#survey-close").hide();
+            $('#submitButton').attr('disabled', true);
+            $('#submitButton').hide();
+            $('#status').hide();
+          $('#container-main').html(Template.message(
+          { title: "", 
+            paragraphs: [
+                "This is your code: <h3>",Application.experiment.workerId,"</h3>",
+                ]
+            }));    
         });
       }
     })
@@ -75,27 +86,8 @@ Application = StateMachine.create({
         this.experiment = msg;
         this.pointer = 0;
         $("#total-span").text(totalTasks);
-
-        if( document.getElementById('assignmentId') ){
-          document.getElementById('assignmentId').value = gup('assignmentId');
-        }
-        if (document.getElementById('submitButton')) {
-          if (gup('assignmentId') == "ASSIGNMENT_ID_NOT_AVAILABLE" || gup('assignmentId')=="")
-          {
-            // If we're previewing, disable the button and give it a helpful message
-            $('#submitButton').hide();
-          } else {
-            // If the user accepted, then show the task.
-            // fetch assignementId and workerId e.g.: ?assignmentId=1234&workerId=Dj
-              Application.experiment.assignmentId = gup('assignmentId');
-              Application.experiment.workerId = gup('workerId');
-              var form = document.getElementById('mturk_form');
-              if (document.referrer && ( document.referrer.indexOf('workersandbox') != -1) ) {
-                  form.action = "https://www.mturk.com/mturk/externalSubmit";
-              }
-              Application.startExperiment();
-          }
-        }
+        Application.experiment.workerId = guid();
+        Application.startExperiment();
     }, 
 
     onwelcome: function() { $('#container-main').html(Template.message(
@@ -105,8 +97,8 @@ Application = StateMachine.create({
                 "We will show you 1 image on the left, and your task is to detect if there is a duplicate among the set on the right.",
                 "Press <a class=\"btn btn-inverse disabled\">J</a> if you find a match.",
                 "Press <a class=\"btn btn-inverse disabled\">F</a> if there are NO matches.",
-                "If you wish, you can change the difficulty after each task.",
-                "A corresponding bonus will be granted if the answer is correct.",
+                "If you wish, you can change the <a class=\"btn btn-inverse disabled\">Difficulty</a> after each task.",
+                "A corresponding bonus will be granted for the correct answers.",
                 "You can stop at any moment by clicking submit and filling the survey.",
                 ]
         })); },
