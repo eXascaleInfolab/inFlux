@@ -29,7 +29,7 @@
   <div class="heading" id="status">
       <div class="scores-container">
         <div id="correct-span" class="score-container">0.00</div>
-        <div id="total-span" class="count-container"></div>
+        <div id="total-span" class="count-container">200</div>
         <a href="#" id="submitButton" role="button" class="submit-container"><i class="icon-arrow-right"></i></a>
       </div>
   </div>
@@ -64,15 +64,6 @@
   <script id="trial-message" type="text/x-handlebars-template">
     <div class="row">
         <div class="span12" style="padding: 0px; height: 300px; display:table; text-align:center;">
-              <div id="opt" style="padding-top:100px"> 
-                Select Difficulty (Optional)
-                <select id="diff">
-                  <option value="9"> 8 (1 cent/HIT)</option>
-                  <option value="17">16 (2 cents/HIT)</option>
-                  <option value="33">32 (3 cents/HIT)</option>
-                  <option value="65">64 (4 cents/HIT)</option>
-                </select>
-             </div>
              <div style="padding-top:40px">{{{this}}}</div>
         </div>
     </div>
