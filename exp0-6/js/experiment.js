@@ -361,7 +361,7 @@ TaskFSM.prototype = {
         },
 }
 
-var totalTasks = 20;
+var totalTasks = 24;
 var totalCorrect = 0;
 var totalBonus = 0;
 var totalDone = 0;
@@ -381,12 +381,12 @@ var task = {
 };
 
 Application.load({
-    name: "EXP0-6-10",
+    name: "EXP0-6",
     fullscreen: true,
     workerId: 0,
     assignmentId: 0,
     difficulty: 7,
-    time: '10',
+    time: '-',
     sets: [
       {
         name: "set_validation",
@@ -394,122 +394,122 @@ Application.load({
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '10000',
+        time: '10',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '10000',
+        time: '10',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '10000',
+        time: '10',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '1000',
+        time: '1',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '1000',
+        time: '1',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '1000',
+        time: '1',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '5000',
+        time: '5',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '5000',
+        time: '5',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '5000',
+        time: '5',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '500',
+        time: '0.5',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '500',
+        time: '0.5',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '500',
+        time: '0.5',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '3000',
+        time: '3',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '3000',
+        time: '3',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '3000',
+        time: '3',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '2000',
+        time: '2',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '2000',
+        time: '2',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '2000',
+        time: '2',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '1500',
+        time: '1.5',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '1500',
+        time: '1.5',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '1500',
+        time: '1.5',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '7000',
+        time: '7',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '7000',
+        time: '7',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '7000',
+        time: '7',
         },
      ]},  
     ],
