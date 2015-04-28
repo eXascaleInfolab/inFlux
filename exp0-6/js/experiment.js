@@ -200,6 +200,7 @@ TaskFSM.prototype = {
     onready: function() {
         var that = this;
         $("#timer").text("--:--:-");
+        $("#submitButton").hide();
         $(document).bind("keypress", function(e) {
             if (e.which > 0) {
                 e.preventDefault();
@@ -335,13 +336,7 @@ TaskFSM.prototype = {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkgreen;">Correct, '+this.task.result.time+' ms</p>')); 
                 this.task.result.correct = true;
                 totalCorrect++;
-                rate = 0;
-                if(this.task.difficulty-1 == 6)
-                    rate = 6;
-                if(this.task.difficulty-1 == 24)
-                    rate = 12;
-                if(this.task.difficulty-1 == 48)
-                    rate = 16;
+                rate = 6;
                 totalBonus = totalBonus + ((this.task.difficulty-1)/rate * taskPrice);
                 var bo = Number((totalBonus).toFixed(2));
                 actuator.updateScore(bo);
@@ -399,102 +394,122 @@ Application.load({
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '15',
+        time: '10000',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '15',
+        time: '10000',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '15',
+        time: '10000',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
-        time: '10',
+        time: '1000',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '1000',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '1000',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '5000',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '5000',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '5000',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '500',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '500',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '500',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '3000',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '3000',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '3000',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '2000',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '2000',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '2000',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '1500',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '1500',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '1500',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '7000',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '7000',
         },
         {
         type: 'FigureMoji',
         amount: 'fun1',
+        time: '7000',
         },
      ]},  
     ],
