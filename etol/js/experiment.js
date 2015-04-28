@@ -339,7 +339,7 @@ TaskFSM.prototype = {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkgreen;">Correct, '+this.task.result.time+' ms</p>')); 
                 this.task.result.correct = true;
                 totalCorrect++;
-                totalBonus = totalBonus + ((this.task.difficulty-1)/6 * taskPrice);
+                totalBonus = totalBonus + ((this.task.difficulty-1)/12 * taskPrice);
                 var bo = Number((totalBonus).toFixed(2));
                 actuator.updateScore(bo);
                 console.log(bo);
