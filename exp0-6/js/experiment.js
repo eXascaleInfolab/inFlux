@@ -340,7 +340,7 @@ TaskFSM.prototype = {
                 rate = 6;
                 totalBonus = totalBonus + ((this.task.difficulty-1)/rate * taskPrice);
                 var bo = Number((totalBonus).toFixed(2));
-                actuator.updateScore(bo);
+                //actuator.updateScore(bo);
                 console.log(bo);
                 $("#totalCorrect").val(totalCorrect);
 
