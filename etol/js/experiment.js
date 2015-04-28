@@ -343,12 +343,12 @@ TaskFSM.prototype = {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkgreen;">Correct, '+this.task.result.time+' ms</p>')); 
                 this.task.result.correct = true;
                 totalCorrect++;
-                rate = 0;
+                rate = 6;
                 if(this.task.difficulty-1 == 6)
                     rate = 6;
                 if(this.task.difficulty-1 == 24)
                     rate = 12;
-                if(this.task.difficulty-1 == 48)
+                if(this.task.difficulty-1 == 60)
                     rate = 20;
                 totalBonus = totalBonus + ((this.task.difficulty-1)/rate * taskPrice);
                 var bo = Number((totalBonus).toFixed(2));
