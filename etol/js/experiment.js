@@ -61,7 +61,10 @@ var Difficulty =  {};
 
 Difficulty.fun1 = function () {
     var currentSet = Application.experiment.sets[Application.pointer-1];
-    vdiff = 7; // 25,49 
+    
+    // look at this variable to change the amount
+    console.log(currentSet.tasks);
+    vdiff = $("#diff").val();
     Application.experiment.difficulty = vdiff;
     return vdiff;
 }
@@ -346,7 +349,7 @@ TaskFSM.prototype = {
                 if(this.task.difficulty-1 == 24)
                     rate = 12;
                 if(this.task.difficulty-1 == 48)
-                    rate = 16;
+                    rate = 20;
                 totalBonus = totalBonus + ((this.task.difficulty-1)/rate * taskPrice);
                 var bo = Number((totalBonus).toFixed(2));
                 actuator.updateScore(bo);
@@ -391,7 +394,7 @@ var task = {
 };
 
 Application.load({
-    name: "FigureMoji_SelfRegulation",
+    name: "ETOL",
     fullscreen: true,
     workerId: 0,
     assignmentId: 0,
