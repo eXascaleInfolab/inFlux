@@ -21,6 +21,7 @@ $('#survey-submit').click(function(e) {
       {
         alert("Please answer faithfully all the question.");
       } else {
+        Application.experiment.survey = $("#mturk_form").serializeArray();
         // somehow .. try to make sure that the json is in the value of $("#data")
         $.ajax( { url: "https://api.mongolab.com/api/1/databases/influx/collections/"+Application.experiment.name+"?apiKey=FzmG9iesxbf045DUjY1tfo65U7584rWO",
           data: JSON.stringify( Application.experiment ),
@@ -32,12 +33,12 @@ $('#survey-submit').click(function(e) {
           $("#data").val(JSON.stringify(exp));
         }).always(function() {
           // submit the form anyway
-            $("#container-main").show();
-            $("#survey").hide();
-            $("#survey-close").hide();
-            $('#submitButton').attr('disabled', true);
-            $('#submitButton').hide();
-            $('#status').hide();
+          $("#container-main").show();
+          $("#survey").hide();
+          $("#survey-close").hide();
+          $('#submitButton').attr('disabled', true);
+          $('#submitButton').hide();
+          $('#status').hide();
           $('#container-main').html(Template.message(
           { title: "", 
             paragraphs: [
@@ -302,8 +303,8 @@ TaskFSM.prototype = {
 
         // container gets loaded with counting
         $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkred;"></p>')); 
-        //var cross = $('#cross');
-        //setTimeout(function () {cross.html('Loading Next Task ...'); setTimeout(function () {that.start();},1000);});
+        var cross = $('#cross');
+        setTimeout(function () {cross.html('Loading Next Task ...'); setTimeout(function () {that.start();},1000);});
         that.start();
     },
 
@@ -396,6 +397,7 @@ Application.load({
     workerId: 0,
     assignmentId: 0,
     difficulty: 7,
+    time: '10',
     sets: [
       {
         name: "set_validation",
