@@ -214,7 +214,7 @@ TaskFSM.prototype = {
                 that.set();
             }
         });
-        $('#container-main').html(Template.trialmessage("When ready, press Any Key"));
+        $('#container-main').html(Template.trialmessage("<kbd>When ready, press Any Key</kbd>"));
         $("#diff").val(Application.experiment.difficulty);
         $('#fj').hide();
         $('#opt').show();
@@ -343,15 +343,15 @@ TaskFSM.prototype = {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkgreen;">Correct, '+this.task.result.time+' ms</p>')); 
                 this.task.result.correct = true;
                 totalCorrect++;
-                rate = 6;
+                rate = 0.01;
                 if(this.task.difficulty-1 == 6)
-                    rate = 6;
+                    rate = 0.013;
                 if(this.task.difficulty-1 == 24)
-                    rate = 12;
+                    rate = 0.015;
                 if(this.task.difficulty-1 == 60)
-                    rate = 20;
-                totalBonus = totalBonus + ((this.task.difficulty-1)/rate * taskPrice);
-                var bo = Number((totalBonus).toFixed(2));
+                    rate = 0.02;
+                totalBonus = totalBonus + rate;
+                var bo = Number((totalBonus).toFixed(3));
                 actuator.updateScore(bo);
                 console.log(bo);
                 $("#totalCorrect").val(totalCorrect);

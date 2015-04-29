@@ -383,7 +383,7 @@ var task = {
 };
 
 Application.load({
-    name: "EXP0-24",
+    name: "EXP0-24-run2",
     fullscreen: true,
     workerId: 0,
     assignmentId: 0,
