@@ -386,7 +386,7 @@ var task = {
 };
 
 Application.load({
-    name: "EXP2-6",
+    name: "EXP2-60",
     fullscreen: true,
     workerId: 0,
     assignmentId: 0,
