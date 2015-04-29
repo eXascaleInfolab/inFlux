@@ -1,0 +1,160 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>MojiJS</title>
+  <meta name="description" content="">
+  <!-- Mobile viewport optimized: h5bp.com/viewport -->
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/style.css">
+  <link href='http://fonts.googleapis.com/css?family=Belgrano' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+  <!-- All JavaScript at the bottom, except this Modernizr build.
+       Modernizr enables HTML5 elements & feature detects for optimal performance.
+       Create your own custom Modernizr build: www.modernizr.com/download/ -->
+  <script src="js/vendor/modernizr-2.5.3.min.js"></script>
+</head>
+    <body style="padding: 60px;">
+        <div>
+            <div class="row">
+                <div class="span10"><h1>Results</h1></div>
+                <div id="selector" class="span2 pull-right"></div>
+            </div>
+            </div>
+            <h2>Overview Trials</h2>
+            <div id="overview-container">
+            </div>
+            <h2>Stochastics</h2>
+            <div id="stochastics-container">
+            </div>
+            <h2>Data</h2>
+            <div id="data-container">
+            </div>
+            
+            <footer>
+                <p>
+                    provided by MojiJS
+                </p>
+            </footer>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+            <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.2.min.js"><\/script>')</script>
+
+            <script type="text/javascript" src='https://www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1"}]}'></script>
+
+            <script src="http://rawgit.com/afshinm/Json-to-HTML-Table/master/json-to-table.js"></script>
+            <script>
+            google.load('visualization', '1', {packages: ['table']});
+            var load_selector = function() {
+                $.getJSON("https://api.mongolab.com/api/1/databases/influx/collections?apiKey=FzmG9iesxbf045DUjY1tfo65U7584rWO", function (data) {
+                    var items = [];
+                    $.each(data, function(key, val) {
+                        items.push('<option value="'+val+'">' + val + '</option>');
+                    });
+
+                    $('<select/>', {'id': 'select-experiment', 'class': 'span2', 'onchange': 'load_results(this.value);', html: items.join('') }).appendTo('#selector');
+                    load_results($('#select-experiment').val());
+                });
+            }
+            var load_results = function(table) {
+                $.getJSON("https://api.mongolab.com/api/1/databases/influx/collections/"+table+"?apiKey=FzmG9iesxbf045DUjY1tfo65U7584rWO", function(data) {
+                    //Overview
+                    var items = [];
+                    items.push('<tr> <th>ID</th><th>Name</th><th>Time</th><th>Endtime</th><th>WorkerID</th></tr>');
+                    $.each(data, function(key, val) {
+                        items.push('<tr> <td>' + key + '</td><td>' + val.name + '</td><td>'+(new Date(val.stop) - new Date(val.start))/1000.0+'</td><td>'+new Date(val.stop)+'</td><td>'+val.workerId+'</td></tr>');
+                    });
+
+                    $('#overview-container').html($('<table/>', {'class': 'table table-condensed', html: items.join('') }));
+
+                    //Stochastics
+                    
+                    var gtable = {};
+                    gtable = {
+                          cols: [{id: 'A', label: 'Trial', type: 'string'},
+                                 {id: 'B', label: 'Set', type: 'string'},
+                                 {id: 'C', label: 'Type', type: 'string'},
+                                 {id: 'D', label: 'Amount', type: 'number'},
+                                 {id: 'E', label: 'Time', type: 'number'},
+                                 {id: 'F', label: 'Correct', type: 'boolean'},
+                                 {id: 'G', label: 'Similar', type: 'boolean'},
+                                 {id: 'H', label: 'Worker', type: 'string'}
+                                ],
+                          rows: [],
+                    }    
+                    $.each(data, function(key,experiment) {
+                        $.each(experiment.sets, function(key, set) {
+                            $.each(set.tasks, function(key, task) {
+                                if ( task.result ) {
+                                    gtable.rows.push({c:[{v: experiment._id.$oid}, {v: set.name}, {v: task.type}, {v: task.amount}, {v: task.result.time}, {v: task.result.correct}, {v: task.similar}, {v: experiment.workerId}]});
+                                }
+                            });
+                        });
+                    });
+                    var gdatatable = new google.visualization.DataTable(gtable);
+                    var groupedbytypeamount = google.visualization.data.group(
+                        gdatatable, [3,2,6],[{'column': 4, 'aggregation': function(val) {return Math.floor(google.visualization.data.avg(val));}, 'type': 'number', 'label': 'avg Time [ms]'}, {'column': 5, 'aggregation': function (val) {return Math.floor(google.visualization.data.avg(val)*1000)/10.0;}, 'type': 'number', 'label': '% Correct',}]);
+                    var groupedbytype = google.visualization.data.group(
+                        gdatatable, [2],[{'column': 4, 'aggregation': function(val) {return Math.floor(google.visualization.data.avg(val));}, 'type': 'number', 'label': 'avg Time [ms]'}, {'column': 5, 'aggregation': function (val) {return Math.floor(google.visualization.data.avg(val)*1000)/10.0;}, 'type': 'number', 'label': '% Correct',}]);
+                    var groupedbysimilar = google.visualization.data.group(
+                        gdatatable, [6],[{'column': 4, 'aggregation': function(val) {return Math.floor(google.visualization.data.avg(val));}, 'type': 'number', 'label': 'avg Time [ms]'}, {'column': 5, 'aggregation': function (val) {return Math.floor(google.visualization.data.avg(val)*1000)/10.0;}, 'type': 'number', 'label': '% Correct',}, {'column': 6, 'aggregation': google.visualization.data.count, 'type': 'number', 'label': 'Count',}]);
+
+                     var groupedbycorrectness = google.visualization.data.group(
+                        gdatatable, [5],[{'column': 4, 'aggregation': function(val) {return Math.floor(google.visualization.data.avg(val));}, 'type': 'number', 'label': 'avg Time [ms]'}, {'column': 6, 'aggregation': google.visualization.data.count, 'type': 'number', 'label': 'Count',}]);
+
+                    var groupedbyworker = google.visualization.data.group(
+                        gdatatable, [7],[{'column': 4, 'aggregation': function(val) {return Math.floor(google.visualization.data.avg(val));}, 'type': 'number', 'label': 'avg Time [ms]'}, {'column': 5, 'aggregation': function (val) {return Math.floor(google.visualization.data.avg(val)*1000)/10.0;}, 'type': 'number', 'label': '% Correct',},  {'column': 6, 'aggregation': google.visualization.data.count, 'type': 'number', 'label': 'Count',}]);
+ 
+
+                    var formatter = new google.visualization.BarFormat({width: 120});
+//                    formatter.format(groupedbytypeamount, 2);
+//                    formatter.format(groupedbytypeamount, 3); 
+//                    formatter.format(groupedbytype, 1);
+//                    formatter.format(groupedbytype, 2); 
+                    
+                    $('#stochastics-container').empty();
+                    var vis = {}
+                    vis = new google.visualization.Table($('<div/>').appendTo('#stochastics-container').get(0));
+                    vis.draw(groupedbytype,{allowHtml: true, cssClassNames: {table: 'table', headerRow: 'th', } });
+                    vis = new google.visualization.Table($('<div/>').appendTo('#stochastics-container').get(0));
+                    vis.draw(groupedbytypeamount,{allowHtml: true, cssClassNames: {table: 'table', headerRow: 'th', } });
+                    vis = new google.visualization.Table($('<div/>').appendTo('#stochastics-container').get(0));
+                    vis.draw(groupedbysimilar,{allowHtml: true, cssClassNames: {table: 'table', headerRow: 'th', } });
+                    vis = new google.visualization.Table($('<div/>').appendTo('#stochastics-container').get(0));
+                    vis.draw(groupedbycorrectness,{allowHtml: true, cssClassNames: {table: 'table', headerRow: 'th', } });
+                    vis = new google.visualization.Table($('<div/>').appendTo('#stochastics-container').get(0));
+                    vis.draw(groupedbyworker,{allowHtml: true, cssClassNames: {table: 'table', headerRow: 'th', } });
+
+                    $('.google-visualization-table-table').removeClass();
+
+
+                     //data
+                    var datatable = [];
+
+                    $.each(data, function(key,experiment) {
+                        $.each(experiment.sets, function(key, set) {
+                            $.each(set.tasks, function(key, task) {
+                                if (task.result) {
+                                    datatable.push({'trial': experiment._id.$oid, 'set': set.name, 'workerId': experiment.workerId ,'type': task.type, 'amount': task.amount, 'similar': task.similar, 'time': task.result.time , 'correct': task.result.correct?1:0});
+                                }
+                            });
+                        });
+                    });
+                    
+                    $('#data-container').html(ConvertJsonToTable(datatable, 'data', 'table table-condensed'));
+
+                });
+            };
+            
+            $(document).ready(function() {
+                load_selector();
+            }); 
+
+            </script>
+
+        </div>
+    </body>
+</html>

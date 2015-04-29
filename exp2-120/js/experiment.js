@@ -15,7 +15,6 @@ $('#survey-close').click(function(e) {
       $("#survey").hide();
       $('#submitButton').show();
     })
-
 $('#survey-submit').click(function(e) {
       e.preventDefault();
       if($('input[type=radio]:checked').length<=12)
@@ -50,25 +49,13 @@ $('#survey-submit').click(function(e) {
       }
     })
 
-
-
-//REMOVE
-// $('#mturk_form').submit(function(e) {
-//     e.preventDefault();
-//     console.log('Input : '+$('input[type="radio"]').val());
-//     console.log('DATA :  '+$("#data").val());
-//   });
-
 var actuator = new HTMLActuator();
 
 var Difficulty =  {};
 
 Difficulty.fun1 = function () {
     var currentSet = Application.experiment.sets[Application.pointer-1];
-    
-    // look at this variable to change the amount
-    console.log(currentSet.tasks);
-    vdiff = $("#diff").val();
+    vdiff = 121;
     Application.experiment.difficulty = vdiff;
     return vdiff;
 }
@@ -127,9 +114,11 @@ Application = StateMachine.create({
                 var lefttasks = this.set.tasks.filter(function (el){return (el.result == undefined);});
                 if (lefttasks.length > 0) {
                     var tasktodo = lefttasks[0];
+                    currentTime = tasktodo.time;
                     var fsm = StateMachine.create(task);
                     fsm.load(tasktodo, this.time);
                     var thattaskset = this;
+
                     fsm.callBack = function () {thattaskset.dispatch()};
                 } else {
                     this.callBack();
@@ -155,6 +144,7 @@ Application = StateMachine.create({
 
     ondebriefing: function() {
             $("#container-main").hide();
+            $("#status").hide();
             $("#survey").show();
             $("#survey-close").hide();
             $('#submitButton').attr('disabled', true);
@@ -207,18 +197,21 @@ TaskFSM.prototype = {
 
     onload: function (event, from, to, msg, time) {
         this.task = msg;
-        this.time = time;
+        this.time = this.task.time || time;
+        //console.log(this.task);
     },
 
     onready: function() {
         var that = this;
+        // $("#timer").text("--:--:-");
+        // $("#submitButton").hide();
         $(document).bind("keypress", function(e) {
             if (e.which > 0) {
                 e.preventDefault();
                 that.set();
             }
         });
-        $('#container-main').html(Template.trialmessage("<kbd>When ready, press Any Key</kbd>"));
+        $('#container-main').html(Template.trialmessage("When ready, press Any Key"));
         $("#diff").val(Application.experiment.difficulty);
         $('#fj').hide();
         $('#opt').show();
@@ -242,7 +235,7 @@ TaskFSM.prototype = {
               that.stop('timeout'); 
               clearInterval(that.tm);
            }
-           $("#timer").text(msToTime(n*100));
+           // $("#timer").text(msToTime(n*100));
         }
 
         function msToTime(duration) {
@@ -296,7 +289,7 @@ TaskFSM.prototype = {
         }
 
         // preload in hidden container the content 
-        $('#container-preload').html(Template.trialmessage('<div id="identifiers-preload" class="row" style="display: inline-block;"><div class="span1" style="" id="left-preload"></div><div class="span4" id="right-preload"></div></div>'));
+        $('#container-preload').html(Template.trialmessage('<div id="identifiers-preload" class="row" style="display: inline-block;"><div class="span1" style="" id="left-preload"></div><div class="span7" id="right-preload"></div></div>'));
         $('#left-preload').append(Template.identicon({ data: similarData, type: this.task.type}));
         for (var i = 1; i < amount; i++) {
             var data = "";
@@ -347,19 +340,12 @@ TaskFSM.prototype = {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkgreen;">Correct, '+this.task.result.time+' ms</p>')); 
                 this.task.result.correct = true;
                 totalCorrect++;
-                rate = 0.01;
-                if(this.task.difficulty-1 == 6)
-                    rate = 0.012;
-                if(this.task.difficulty-1 == 24)
-                    rate = 0.014;
-                if(this.task.difficulty-1 == 60)
-                    rate = 0.02;
-                totalBonus = totalBonus + rate;
+                rate = 0.033;
+                totalBonus = totalBonus + rate; 
                 var bo = Number((totalBonus).toFixed(3));
                 actuator.updateScore(bo);
                 console.log(bo);
                 $("#totalCorrect").val(totalCorrect);
-                $("#totalBonus").val(totalBonus);
 
             } else {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkred;">Wrong, '+this.task.result.time+' ms</p>')); 
@@ -384,6 +370,7 @@ var totalCorrect = 0;
 var totalBonus = 0;
 var totalDone = 0;
 var taskPrice = 0.01;
+var currentTime = 10;
 
 var task = {
   target: TaskFSM.prototype,
@@ -399,11 +386,11 @@ var task = {
 };
 
 Application.load({
-    name: "ETOL",
+    name: "EXP2-120",
     fullscreen: true,
     workerId: 0,
     assignmentId: 0,
-    difficulty: 7,
+    difficulty: 121,
     sets: [
       {
         name: "set_validation",
