@@ -345,9 +345,9 @@ TaskFSM.prototype = {
                 totalCorrect++;
                 rate = 0.01;
                 if(this.task.difficulty-1 == 6)
-                    rate = 0.013;
+                    rate = 0.012;
                 if(this.task.difficulty-1 == 24)
-                    rate = 0.015;
+                    rate = 0.014;
                 if(this.task.difficulty-1 == 60)
                     rate = 0.02;
                 totalBonus = totalBonus + rate;
