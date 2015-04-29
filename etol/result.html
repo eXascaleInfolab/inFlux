@@ -68,7 +68,7 @@
                         items.push('<tr> <td>' + key + '</td><td>' + val.name + '</td><td>'+val.workerId+'</td><td>'+val.survey[15].value+'</td><td>'+val.survey[16].value+'</td><td>'+val.survey[17].value+'</td></tr>');
                     });
 
-                    $('#overview-container').html($('<table/>', {'class': 'table table-condensed', html: items.join('') }));
+                    $('#overview-container').html($('<table/>', {'class': 'table table-bordered', html: items.join('') }));
 
                     //Stochastics
                     
