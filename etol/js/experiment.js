@@ -355,6 +355,7 @@ TaskFSM.prototype = {
                 actuator.updateScore(bo);
                 console.log(bo);
                 $("#totalCorrect").val(totalCorrect);
+                $("#totalBonus").val(totalBonus);
 
             } else {
                 $('#container-main').html(Template.trialmessage('<p id="cross" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; color: darkred;">Wrong, '+this.task.result.time+' ms</p>')); 
