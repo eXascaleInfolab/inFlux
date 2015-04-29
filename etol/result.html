@@ -63,9 +63,9 @@
                 $.getJSON("https://api.mongolab.com/api/1/databases/influx/collections/"+table+"?apiKey=FzmG9iesxbf045DUjY1tfo65U7584rWO", function(data) {
                     //Overview
                     var items = [];
-                    items.push('<tr> <th>ID</th><th>Name</th><th>Time</th><th>Endtime</th><th>WorkerID</th></tr>');
+                    items.push('<tr> <th>ID</th><th>Name</th><th>WorkerID</th><th>Total done</th><th>Total Correct</th></tr>');
                     $.each(data, function(key, val) {
-                        items.push('<tr> <td>' + key + '</td><td>' + val.name + '</td><td>'+(new Date(val.stop) - new Date(val.start))/1000.0+'</td><td>'+new Date(val.stop)+'</td><td>'+val.workerId+'</td></tr>');
+                        items.push('<tr> <td>' + key + '</td><td>' + val.name + '</td><td>'+val.workerId+'</td><td>'+val.survey[15].value+'</td><td>'+val.survey[16].value+'</td></tr>');
                     });
 
                     $('#overview-container').html($('<table/>', {'class': 'table table-condensed', html: items.join('') }));
