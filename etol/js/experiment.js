@@ -399,7 +399,7 @@ var task = {
 };
 
 Application.load({
-    name: "ETOL",
+    name: "ETOL-TEST",
     fullscreen: true,
     workerId: 0,
     assignmentId: 0,
